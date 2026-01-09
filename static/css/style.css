@@ -1,0 +1,482 @@
+
+/* Global Styles */
+:root {
+    --primary-green: #63ab4a;
+    --secondary-green: #94c937;
+    --dark-green: #334232;
+    --light-grey: #fbfbfb;
+    --medium-grey: #99a1a9;
+    --brown: #954d35;
+    --light-green: #d8df8b;
+    --border-grey: #c8cdd0;
+    --tan: #caa79d;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Lato', sans-serif;
+    color: var(--dark-green);
+    line-height: 1.6;
+    background-color: #fff;
+}
+
+/* Text class for paragraphs and normal text */
+.text-normal, p, li:not(.font-bold), label, input, textarea {
+    font-family: "Parkinsans", sans-serif;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-family: 'Karla', sans-serif;
+    font-weight: 700;
+    margin-bottom: 1rem;
+}
+
+a {
+    text-decoration: none;
+    color: var(--primary-green);
+    transition: color 0.3s ease;
+}
+
+a:hover {
+    color: var(--secondary-green);
+}
+
+.container {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 1rem;
+}
+
+/* Header Styles */
+header {
+    background-color: transparent;
+    position: absolute;
+    width: 100%;
+    z-index: 10;
+    padding: 1rem 0;
+}
+
+.diagonal-section {
+    position: relative;
+    background: url('your-image.jpg') no-repeat center center/cover;
+    transform: skewY(-5deg);
+    margin-top: -50px; /* pulls it up to blend better with previous section */
+    z-index: 1;
+  }
+  
+  .diagonal-section .content {
+    transform: skewY(5deg); /* cancels the skew for content inside */
+    padding: 150px 20px;
+    color: white;
+    text-align: center;
+  }
+  
+  .diagonal-section h1 {
+    font-size: 4rem;
+    font-weight: bold;
+  }
+  
+
+.rubik-80s-fade-regular {
+    font-family: "Rubik 80s Fade", system-ui;
+    text-shadow: 4px 4px 8px rgba(0, 0, 0, 0.8);
+    font-size: 6rem;
+    font-weight: 530;
+    font-style: normal;
+  }
+
+.parkinsans-gen{
+    font-family: "Parkinsans", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 475;
+    font-style: normal;
+  }
+  
+  
+
+.header-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 1rem;
+}
+
+.logo-container {
+    display: flex;
+    align-items: center;
+}
+
+.logo {
+    height: 100px;
+    width: 80px;
+}
+
+.main-nav ul {
+    display: flex;
+    list-style: none;
+}
+
+.main-nav li {
+    margin-left: 2rem;
+}
+
+.main-nav a {
+    color: white;
+    font-weight: 700;
+    text-transform: uppercase;
+    padding: 0.5rem 1rem;
+    border-radius: 4px;
+    transition: background-color 0.3s ease;
+}
+
+.main-nav a:hover {
+    background-color: rgba(255, 255, 255, 0.2);
+}
+
+/* Hero Section */
+.hero {
+    background-image: url('../img/bgimage.jpeg');
+    background-size: cover;
+    background-position: center;
+    height: 100vh;
+    position: relative;
+    display: flex;
+    align-items: flex-end;
+    justify-content: flex-start;
+    color: white;
+}
+
+.hero::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 1;
+}
+
+.hero-content {
+    position: relative;
+    z-index: 2;
+    max-width: 800px;
+    margin-left: 5%;
+    margin-bottom: 5%; 
+    padding: 0 1rem;
+    align-items: flex-start;
+}
+
+.hero h1 {
+    font-size: 4rem;
+    line-height: 1.2;
+    margin-bottom: 1.5rem;
+    text-transform: uppercase;
+}
+
+.hero p {
+    font-size: 1.2rem;
+    margin-bottom: 2rem;
+    max-width: 600px;
+}
+
+.cta-button {
+    display: inline-block;
+    background-color: var(--secondary-green);
+    color: white;
+    padding: 1rem 2rem;
+    border-radius: 4px;
+    font-weight: 700;
+    text-transform: uppercase;
+    transition: background-color 0.3s ease;
+}
+
+.cta-button:hover {
+    background-color: var(--primary-green);
+    color: white;
+}
+
+/* Section Styles */
+.section {
+    padding: 5rem 0;
+}
+
+.section-title {
+    text-align: center;
+    margin-bottom: 3rem;
+    position: relative;
+}
+
+.section-title::after {
+    content: '';
+    position: absolute;
+    bottom: -10px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 50px;
+    height: 3px;
+    background-color: var(--secondary-green);
+}
+
+/* Features Section */
+.features {
+    background-color: var(--light-grey);
+}
+
+.section-description {
+    text-align: center;
+    max-width: 800px;
+    margin: 0 auto 2rem;
+}
+
+.features-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+    margin-top: 3rem;
+}
+
+.feature-card {
+    background-color: white;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.feature-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+}
+
+.feature-img {
+    height: 200px;
+    width: 100%;
+    object-fit: cover;
+}
+
+.feature-content {
+    padding: 1.5rem;
+}
+
+.feature-title {
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+}
+
+/* How It Works Section */
+.how-it-works {
+    background-color: white;
+}
+
+.steps {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    margin-top: 3rem;
+}
+
+.step {
+    flex: 0 0 calc(25% - 2rem);
+    margin-bottom: 2rem;
+    text-align: center;
+}
+
+.step-icon {
+    width: 60px;
+    height: 60px;
+    margin: 0 auto 1rem;
+}
+
+.step-title {
+    font-size: 1.2rem;
+    margin-bottom: 0.5rem;
+}
+
+/* Benefits Section */
+.benefits {
+    background-color: var(--light-grey);
+}
+
+.benefits-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+}
+
+.benefit-card {
+    background-color: white;
+    border-radius: 8px;
+    padding: 2rem;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+.benefit-card h3 {
+    color: var(--primary-green);
+    margin-bottom: 1rem;
+}
+
+/* Call to Action Section */
+.cta {
+    background-color: var(--dark-green);
+    color: white;
+    text-align: center;
+    padding: 4rem 0;
+}
+
+.cta h2 {
+    font-size: 2.5rem;
+    margin-bottom: 1.5rem;
+}
+
+.cta p {
+    max-width: 600px;
+    margin: 0 auto 2rem;
+}
+
+/* Footer Styles */
+footer {
+    background-color: #f5f5f5;
+    padding: 3rem 0 1rem;
+}
+
+.footer-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 1rem;
+}
+
+.footer-section {
+    flex: 0 0 calc(33.333% - 2rem);
+    margin-bottom: 2rem;
+}
+
+.social-links a {
+    display: inline-block;
+    margin-right: 1rem;
+}
+
+.contact-button {
+    display: inline-block;
+    background-color: var(--secondary-green);
+    color: white;
+    padding: 0.75rem 1.5rem;
+    border-radius: 4px;
+    font-weight: 700;
+    margin-top: 1rem;
+}
+
+.contact-button:hover {
+    background-color: var(--primary-green);
+    color: white;
+}
+
+.footer-bottom {
+    border-top: 1px solid var(--border-grey);
+    padding-top: 1rem;
+    display: flex;
+    justify-content: space-between;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 1rem;
+}
+
+.footer-links {
+    display: flex;
+    list-style: none;
+}
+
+.footer-links li {
+    margin-left: 1.5rem;
+}
+
+.footer-links a {
+    color: var(--medium-grey);
+    font-size: 0.9rem;
+}
+
+/* Responsive Styles */
+@media (max-width: 768px) {
+    .hero h1 {
+        font-size: 3rem;
+    }
+
+    .mini-hero {
+        height: 40vh;
+        display: flex;
+        align-items: flex-end; /* Aligns content to bottom */
+        justify-content: flex-start;
+    }
+
+    .mini-hero .hero-content {
+        margin-bottom: 2rem; /* Adjust this value as needed */
+    }
+
+    .mini-hero .rubik-80s-fade-regular {
+        font-size: 5rem; /* Slightly smaller for this specific placement */
+    }
+    
+    .step {
+        flex: 0 0 100%;
+    }
+
+    .footer-section {
+        flex: 0 0 100%;
+    }
+
+    .footer-bottom {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .footer-links {
+        margin-top: 1rem;
+    }
+
+    .footer-links li:first-child {
+        margin-left: 0;
+    }
+}
+
+@media (max-width: 576px) {
+    .header-container {
+        flex-direction: column;
+    }
+
+    .main-nav {
+        margin-top: 1rem;
+    }
+
+    .main-nav ul {
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+
+    .main-nav li {
+        margin: 0.5rem;
+    }
+
+    .hero h1 {
+        font-size: 2.5rem;
+    }
+}
+
+/* Hero Section - Background image is set via JavaScript */
+#hero-section {
+    background-size: cover;
+    background-position: center;
+}
+
+/* For Tailwind CSS integration - remove styling that Tailwind will handle */
+/* This keeps our CSS file minimal */

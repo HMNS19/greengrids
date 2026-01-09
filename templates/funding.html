@@ -1,0 +1,348 @@
+{% extends 'base.html' %}
+
+{% block title %}GreenGrids - Fund a Greener Future{% endblock %}
+
+{% block description %}Support tree planting and climate-positive solutions in neighborhoods you care about. Donate to make urban areas cooler and greener.{% endblock %}
+
+{% block content %}
+<!-- Hero Section -->
+<section id="funding-hero" class="relative h-screen flex items-center justify-start overflow-hidden">
+    <!-- Background image with dark overlay -->
+    <div class="absolute inset-0 z-0">
+        <img src="{{ url_for('static', filename='img/newtree.jpg') }}" alt="Tree Planting" class="w-full h-full object-cover">
+        <div class="absolute inset-0 bg-black opacity-40"></div>
+    </div>
+    
+    <!-- Content -->
+    <div class="container mx-auto px-4 ml-[10%] md:ml-24 relative z-10">
+        <div class="max-w-2xl">
+            <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold text-white leading-tight mb-6">
+                <p class="rubik-80s-fade-regular">FUND A GREENER FUTURE.</p>
+            </h1>
+            <p class="text-xl md:text-2xl text-white mb-8 parkinsans-gen">
+                Support tree planting and climate-positive solutions in neighborhoods you care about.
+            </p>
+            <a href="#donation-form" class="inline-block">
+                <button class="view-grid-btn">
+                    DONATE NOW
+                    <div class="star-1">
+                        <svg xmlns="http://www.w3.org/2000/svg" xml:space="preserve" version="1.1" viewBox="0 0 784.11 815.53">
+                            <path class="fil0" d="M392.05 0c-20.9,210.08 -184.06,378.41 -392.05,407.78 207.96,29.37 371.12,197.68 392.05,407.74 20.93,-210.06 184.09,-378.37 392.05,-407.74 -207.98,-29.38 -371.16,-197.69 -392.06,-407.78z"/>
+                        </svg>
+                    </div>
+                    <div class="star-2">
+                        <svg xmlns="http://www.w3.org/2000/svg" xml:space="preserve" version="1.1" viewBox="0 0 784.11 815.53">
+                            <path class="fil0" d="M392.05 0c-20.9,210.08 -184.06,378.41 -392.05,407.78 207.96,29.37 371.12,197.68 392.05,407.74 20.93,-210.06 184.09,-378.37 392.05,-407.74 -207.98,-29.38 -371.16,-197.69 -392.06,-407.78z"/>
+                        </svg>
+                    </div>
+                    <div class="star-3">
+                        <svg xmlns="http://www.w3.org/2000/svg" xml:space="preserve" version="1.1" viewBox="0 0 784.11 815.53">
+                            <path class="fil0" d="M392.05 0c-20.9,210.08 -184.06,378.41 -392.05,407.78 207.96,29.37 371.12,197.68 392.05,407.74 20.93,-210.06 184.09,-378.37 392.05,-407.74 -207.98,-29.38 -371.16,-197.69 -392.06,-407.78z"/>
+                        </svg>
+                    </div>
+                    <div class="star-4">
+                        <svg xmlns="http://www.w3.org/2000/svg" xml:space="preserve" version="1.1" viewBox="0 0 784.11 815.53">
+                            <path class="fil0" d="M392.05 0c-20.9,210.08 -184.06,378.41 -392.05,407.78 207.96,29.37 371.12,197.68 392.05,407.74 20.93,-210.06 184.09,-378.37 392.05,-407.74 -207.98,-29.38 -371.16,-197.69 -392.06,-407.78z"/>
+                        </svg>
+                    </div>
+                    <div class="star-5">
+                        <svg xmlns="http://www.w3.org/2000/svg" xml:space="preserve" version="1.1" viewBox="0 0 784.11 815.53">
+                            <path class="fil0" d="M392.05 0c-20.9,210.08 -184.06,378.41 -392.05,407.78 207.96,29.37 371.12,197.68 392.05,407.74 20.93,-210.06 184.09,-378.37 392.05,-407.74 -207.98,-29.38 -371.16,-197.69 -392.06,-407.78z"/>
+                        </svg>
+                    </div>
+                    <div class="star-6">
+                        <svg xmlns="http://www.w3.org/2000/svg" xml:space="preserve" version="1.1" viewBox="0 0 784.11 815.53">
+                            <path class="fil0" d="M392.05 0c-20.9,210.08 -184.06,378.41 -392.05,407.78 207.96,29.37 371.12,197.68 392.05,407.74 20.93,-210.06 184.09,-378.37 392.05,-407.74 -207.98,-29.38 -371.16,-197.69 -392.06,-407.78z"/>
+                        </svg>
+                    </div>
+                </button>
+            </a>
+        </div>
+    </div>
+</section>
+
+
+
+<!-- Why Fund This Section -->
+<section class="py-20 bg-light-grey">
+    <div class="container mx-auto px-4">
+        <h2 class="text-3xl md:text-4xl font-bold text-center mb-10 relative">
+            Why Fund This?
+            <span class="absolute bottom-0 left-1/2 transform -translate-x-1/2 w-16 h-1 bg-secondary-green mt-4"></span>
+        </h2>
+        <p class="text-lg text-center max-w-4xl mx-auto mb-12 parkinsans-gen">
+            Urban greening is one of the most effective strategies to combat rising temperatures in cities. By funding tree planting in heat-vulnerable areas, you're investing in natural infrastructure that cools neighborhoods, improves air quality, and creates healthier communities for generations to come.
+        </p>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mt-12">
+            <div class="bg-white rounded-lg shadow-md p-8 text-center hover:shadow-xl transition-shadow duration-300">
+                <div class="text-4xl mb-4">🌡️</div>
+                <h3 class="text-xl font-bold mb-2 text-dark-green">Urban Cooling</h3>
+                <p class="text-gray-700 parkinsans-gen">Trees can reduce ambient temperatures by up to 8°C, creating natural cooling zones in urban heat islands.</p>
+            </div>
+            <div class="bg-white rounded-lg shadow-md p-8 text-center hover:shadow-xl transition-shadow duration-300">
+                <div class="text-4xl mb-4">🌿</div>
+                <h3 class="text-xl font-bold mb-2 text-dark-green">Biodiversity Support</h3>
+                <p class="text-gray-700 parkinsans-gen">Native trees support local wildlife, creating habitats for birds, insects, and other urban biodiversity.</p>
+            </div>
+            <div class="bg-white rounded-lg shadow-md p-8 text-center hover:shadow-xl transition-shadow duration-300">
+                <div class="text-4xl mb-4">🌍</div>
+                <h3 class="text-xl font-bold mb-2 text-dark-green">CO₂ Reduction</h3>
+                <p class="text-gray-700 parkinsans-gen">Trees absorb carbon dioxide, helping to mitigate climate change while providing cleaner air.</p>
+            </div>
+            <div class="bg-white rounded-lg shadow-md p-8 text-center hover:shadow-xl transition-shadow duration-300">
+                <div class="text-4xl mb-4">🧘</div>
+                <h3 class="text-xl font-bold mb-2 text-dark-green">Community Health</h3>
+                <p class="text-gray-700 parkinsans-gen">Green spaces improve mental health, encourage physical activity, and build stronger communities.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- How It Works Section -->
+<section class="py-20 bg-white">
+    <div class="container mx-auto px-4">
+        <h2 class="text-3xl md:text-4xl font-bold text-center mb-10 relative">
+            How It Works
+            <span class="absolute bottom-0 left-1/2 transform -translate-x-1/2 w-16 h-1 bg-secondary-green mt-4"></span>
+        </h2>
+
+        <div class="grid grid-cols-1 md:grid-cols-4 gap-8 mt-12">
+            <div class="text-center">
+                <div class="bg-light-grey rounded-full w-20 h-20 flex items-center justify-center mx-auto mb-6 text-2xl font-bold">1</div>
+                <h3 class="text-xl font-bold mb-2 text-dark-green">Choose a Location</h3>
+                <p class="text-gray-700 parkinsans-gen">Select an area in need of greening that you want to support</p>
+            </div>
+            <div class="text-center">
+                <div class="bg-light-grey rounded-full w-20 h-20 flex items-center justify-center mx-auto mb-6 text-2xl font-bold">2</div>
+                <h3 class="text-xl font-bold mb-2 text-dark-green">Data Assessment</h3>
+                <p class="text-gray-700 parkinsans-gen">We assess it using satellite & sensor data to determine optimal greening strategy</p>
+            </div>
+            <div class="text-center">
+                <div class="bg-light-grey rounded-full w-20 h-20 flex items-center justify-center mx-auto mb-6 text-2xl font-bold">3</div>
+                <h3 class="text-xl font-bold mb-2 text-dark-green">Strategic Planting</h3>
+                <p class="text-gray-700 parkinsans-gen">Trees are planted based on local climate & soil conditions for maximum impact</p>
+            </div>
+            <div class="text-center">
+                <div class="bg-light-grey rounded-full w-20 h-20 flex items-center justify-center mx-auto mb-6 text-2xl font-bold">4</div>
+                <h3 class="text-xl font-bold mb-2 text-dark-green">Progress Updates</h3>
+                <p class="text-gray-700 parkinsans-gen">You receive regular updates on your funded projects and their impact</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Choose a Location Section -->
+
+
+<!-- Donation & Impact Calculator Section -->
+<section id="donation-form" class="py-20 bg-white">
+    <div class="container mx-auto px-4">
+        <h2 class="text-3xl md:text-4xl font-bold text-center mb-10 relative">
+            Make Your Impact
+            <span class="absolute bottom-0 left-1/2 transform -translate-x-1/2 w-16 h-1 bg-secondary-green mt-4"></span>
+        </h2>
+
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 max-w-6xl mx-auto">
+            <!-- Donation Form -->
+            <div class="bg-light-grey rounded-lg shadow-lg p-8">
+                <h3 class="text-2xl font-bold mb-6 text-dark-green">Donation Form</h3>
+                <form>
+                    <div class="mb-6">
+                        <label for="name" class="block text-gray-700 mb-2 parkinsans-gen">Donor Name</label>
+                        <input type="text" id="name" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-secondary-green">
+                    </div>
+                    <div class="mb-6">
+                        <label for="email" class="block text-gray-700 mb-2 parkinsans-gen">Email</label>
+                        <input type="email" id="email" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-secondary-green">
+                    </div>
+                    <div class="mb-6">
+                        <label for="amount" class="block text-gray-700 mb-2 parkinsans-gen">Donation Amount (₹)</label>
+                        <input type="range" id="amount" min="100" max="10000" step="100" value="500" class="w-full h-2 bg-gray-300 rounded-lg appearance-none cursor-pointer">
+                        <div class="flex justify-between mt-2">
+                            <span class="parkinsans-gen">₹100</span>
+                            <span id="amount-display" class="parkinsans-gen">₹500</span>
+                            <span class="parkinsans-gen">₹10,000</span>
+                        </div>
+                    </div>
+                    <div class="mb-8">
+                        <label for="area" class="block text-gray-700 mb-2 parkinsans-gen">Area of Choice</label>
+                        <select id="area" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-secondary-green">
+                            <option value="">Select an area</option>
+                            <option value="north">North District (High Heat Zone)</option>
+                            <option value="central">Central District (Medium Heat Zone)</option>
+                            <option value="east">East District (Tree-Scarce Area)</option>
+                            <option value="west">West District (Commercial Zone)</option>
+                            <option value="south">South District (Residential Area)</option>
+                        </select>
+                    </div>
+                    <button type="submit" class="view-grid-btn w-full">
+                        DONATE NOW
+                        <div class="star-1">
+                            <svg xmlns="http://www.w3.org/2000/svg" xml:space="preserve" version="1.1" viewBox="0 0 784.11 815.53">
+                                <path class="fil0" d="M392.05 0c-20.9,210.08 -184.06,378.41 -392.05,407.78 207.96,29.37 371.12,197.68 392.05,407.74 20.93,-210.06 184.09,-378.37 392.05,-407.74 -207.98,-29.38 -371.16,-197.69 -392.06,-407.78z"/>
+                            </svg>
+                        </div>
+                        <div class="star-2">
+                            <svg xmlns="http://www.w3.org/2000/svg" xml:space="preserve" version="1.1" viewBox="0 0 784.11 815.53">
+                                <path class="fil0" d="M392.05 0c-20.9,210.08 -184.06,378.41 -392.05,407.78 207.96,29.37 371.12,197.68 392.05,407.74 20.93,-210.06 184.09,-378.37 392.05,-407.74 -207.98,-29.38 -371.16,-197.69 -392.06,-407.78z"/>
+                            </svg>
+                        </div>
+                        <div class="star-3">
+                            <svg xmlns="http://www.w3.org/2000/svg" xml:space="preserve" version="1.1" viewBox="0 0 784.11 815.53">
+                                <path class="fil0" d="M392.05 0c-20.9,210.08 -184.06,378.41 -392.05,407.78 207.96,29.37 371.12,197.68 392.05,407.74 20.93,-210.06 184.09,-378.37 392.05,-407.74 -207.98,-29.38 -371.16,-197.69 -392.06,-407.78z"/>
+                            </svg>
+                        </div>
+                        <div class="star-4">
+                            <svg xmlns="http://www.w3.org/2000/svg" xml:space="preserve" version="1.1" viewBox="0 0 784.11 815.53">
+                                <path class="fil0" d="M392.05 0c-20.9,210.08 -184.06,378.41 -392.05,407.78 207.96,29.37 371.12,197.68 392.05,407.74 20.93,-210.06 184.09,-378.37 392.05,-407.74 -207.98,-29.38 -371.16,-197.69 -392.06,-407.78z"/>
+                            </svg>
+                        </div>
+                        <div class="star-5">
+                            <svg xmlns="http://www.w3.org/2000/svg" xml:space="preserve" version="1.1" viewBox="0 0 784.11 815.53">
+                                <path class="fil0" d="M392.05 0c-20.9,210.08 -184.06,378.41 -392.05,407.78 207.96,29.37 371.12,197.68 392.05,407.74 20.93,-210.06 184.09,-378.37 392.05,-407.74 -207.98,-29.38 -371.16,-197.69 -392.06,-407.78z"/>
+                            </svg>
+                        </div>
+                        <div class="star-6">
+                            <svg xmlns="http://www.w3.org/2000/svg" xml:space="preserve" version="1.1" viewBox="0 0 784.11 815.53">
+                                <path class="fil0" d="M392.05 0c-20.9,210.08 -184.06,378.41 -392.05,407.78 207.96,29.37 371.12,197.68 392.05,407.74 20.93,-210.06 184.09,-378.37 392.05,-407.74 -207.98,-29.38 -371.16,-197.69 -392.06,-407.78z"/>
+                            </svg>
+                        </div>
+                    </button>
+                </form>
+            </div>
+
+            <!-- Impact Calculator -->
+            <div class="bg-light-grey rounded-lg shadow-lg p-8">
+                <h3 class="text-2xl font-bold mb-6 text-dark-green">Your Impact</h3>
+                <p class="mb-6 parkinsans-gen">A ₹500 donation can plant 5 trees, sequester ~100 kg of CO₂ over 10 years, and cool the area by up to 1.2°C.</p>
+
+                <div class="grid grid-cols-1 gap-4 mb-8">
+                    <div class="bg-white rounded-lg p-6 shadow-md">
+                        <div class="flex items-center">
+                            <span class="text-3xl mr-4">🌳</span>
+                            <div>
+                                <h4 class="text-lg font-bold">Trees Planted</h4>
+                                <p id="trees-count" class="text-3xl font-bold text-secondary-green parkinsans-gen">5</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="bg-white rounded-lg p-6 shadow-md">
+                        <div class="flex items-center">
+                            <span class="text-3xl mr-4">🟢</span>
+                            <div>
+                                <h4 class="text-lg font-bold">CO₂ Sequestered</h4>
+                                <p id="co2-count" class="text-3xl font-bold text-secondary-green parkinsans-gen">100 kg</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="bg-white rounded-lg p-6 shadow-md">
+                        <div class="flex items-center">
+                            <span class="text-3xl mr-4">❄️</span>
+                            <div>
+                                <h4 class="text-lg font-bold">Temperature Reduction</h4>
+                                <p id="temp-reduction" class="text-3xl font-bold text-secondary-green parkinsans-gen">1.2°C</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-white rounded-lg p-4 border-l-4 border-primary-green">
+                    <p class="text-sm text-gray-700 parkinsans-gen">
+                        <strong>Did you know?</strong> A mature tree can absorb up to 22kg of carbon dioxide per year and provide enough oxygen for four people.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Impact Metrics Section -->
+<section class="py-20 bg-dark-green text-white">
+    <div class="container mx-auto px-4">
+        <h2 class="text-3xl md:text-4xl font-bold text-center mb-10 relative">
+            Our Collective Impact
+            <span class="absolute bottom-0 left-1/2 transform -translate-x-1/2 w-16 h-1 bg-secondary-green mt-4"></span>
+        </h2>
+        <p class="text-lg text-center max-w-4xl mx-auto mb-12 parkinsans-gen">
+            Together, our community has made a significant difference. Here's our impact so far:
+        </p>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+            <div class="bg-white bg-opacity-10 rounded-lg p-8 text-center">
+                <h3 class="text-5xl font-bold mb-2 text-secondary-green counter">12,345</h3>
+                <p class="text-xl parkinsans-gen">Total Trees Planted</p>
+            </div>
+            <div class="bg-white bg-opacity-10 rounded-lg p-8 text-center">
+                <h3 class="text-5xl font-bold mb-2 text-secondary-green counter">271,590</h3>
+                <p class="text-xl parkinsans-gen">Total CO₂ Captured (kg)</p>
+            </div>
+            <div class="bg-white bg-opacity-10 rounded-lg p-8 text-center">
+                <h3 class="text-5xl font-bold mb-2 text-secondary-green counter">37</h3>
+                <p class="text-xl parkinsans-gen">Urban Areas Covered</p>
+            </div>
+            <div class="bg-white bg-opacity-10 rounded-lg p-8 text-center">
+                <h3 class="text-5xl font-bold mb-2 text-secondary-green counter">24</h3>
+                <p class="text-xl parkinsans-gen">Native Species Supported</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+{% endblock %}
+
+{% block extra_js %}
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        // Set hero background image
+        const heroSection = document.getElementById('funding-hero');
+        if (heroSection) {
+            heroSection.style.backgroundImage = "url('{{ url_for('static', filename='img/tree-planting.jpg') }}')";
+        }
+
+        // Donation slider functionality
+        const amountSlider = document.getElementById('amount');
+        const amountDisplay = document.getElementById('amount-display');
+        const treesCount = document.getElementById('trees-count');
+        const co2Count = document.getElementById('co2-count');
+        const tempReduction = document.getElementById('temp-reduction');
+
+        if (amountSlider && amountDisplay) {
+            amountSlider.addEventListener('input', function() {
+                const amount = parseInt(this.value);
+                amountDisplay.textContent = '₹' + amount.toLocaleString();
+                
+                // Update impact values (simple calculation for demo)
+                const trees = Math.floor(amount / 100);
+                const co2 = trees * 20;
+                const temp = (trees * 0.24).toFixed(1);
+                
+                treesCount.textContent = trees;
+                co2Count.textContent = co2 + ' kg';
+                tempReduction.textContent = temp + '°C';
+            });
+        }
+
+        // Animation for counters
+        const counters = document.querySelectorAll('.counter');
+        counters.forEach(counter => {
+            const target = parseInt(counter.innerText);
+            const increment = target / 100;
+            
+            let count = 0;
+            const updateCounter = () => {
+                if (count < target) {
+                    count += increment;
+                    counter.innerText = Math.ceil(count).toLocaleString();
+                    setTimeout(updateCounter, 10);
+                } else {
+                    counter.innerText = target.toLocaleString();
+                }
+            };
+            
+            updateCounter();
+        });
+    });
+</script>
+{% endblock %} 

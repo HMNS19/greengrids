@@ -1,0 +1,320 @@
+{% extends 'base.html' %}
+
+{% block title %}GreenGrids - Contact Us{% endblock %}
+
+{% block content %}
+<section class="hero mini-hero">
+    <div class="hero-content">
+        <h1>CONTACT US</h1>
+    </div>
+</section>
+
+<section class="section contact-section">
+    <div class="container">
+        <div class="contact-grid">
+            <div class="contact-info">
+                <h2>Get in Touch</h2>
+                <p>We'd love to hear from you and discuss how our GreenGrids can help your city become cooler, greener, and more livable. Fill out the form, and our team will get back to you as soon as possible.</p>
+
+                <div class="contact-details">
+                    <div class="contact-item">
+                        <h3>Email</h3>
+                        <p><a href="mailto:info@urbangreenmap.com">info@urbangreenmap.com</a></p>
+                    </div>
+                    <div class="contact-item">
+                        <h3>Phone</h3>
+                        <p>(555) 123-4567</p>
+                    </div>
+                    <div class="contact-item">
+                        <h3>Address</h3>
+                        <p>123 Green Street<br>Innovation District<br>Cooltown, CT 10001</p>
+                    </div>
+                </div>
+
+                <div class="social-links">
+                    <h3>Follow Us</h3>
+                    <div class="social-icons">
+                        <a href="#" class="social-icon">Facebook</a>
+                        <a href="#" class="social-icon">Twitter</a>
+                        <a href="#" class="social-icon">LinkedIn</a>
+                        <a href="#" class="social-icon">Instagram</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="contact-form-container">
+                <h2>Send Us a Message</h2>
+                <form class="contact-form" action="#" method="POST">
+                    <div class="form-group">
+                        <label for="name">Your Name *</label>
+                        <input type="text" id="name" name="name" class="form-control" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Your Email *</label>
+                        <input type="email" id="email" name="email" class="form-control" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="organization">Organization</label>
+                        <input type="text" id="organization" name="organization" class="form-control">
+                    </div>
+                    <div class="form-group">
+                        <label for="subject">Subject *</label>
+                        <input type="text" id="subject" name="subject" class="form-control" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="message">Message *</label>
+                        <textarea id="message" name="message" rows="5" class="form-control" required></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label for="interest">I'm interested in:</label>
+                        <select id="interest" name="interest" class="form-control">
+                            <option value="">Please select</option>
+                            <option value="city-heat-map">City-Wide Heat Map</option>
+                            <option value="local-heat-map">Local Heat Map</option>
+                            <option value="heat-green-analysis">Heat + Green Analysis</option>
+                            <option value="cooling-potential">Cooling Potential Map</option>
+                            <option value="custom-solution">Custom Solution</option>
+                            <option value="other">Other</option>
+                        </select>
+                    </div>
+                    <div class="form-check">
+                        <input type="checkbox" id="privacy-policy" name="privacy-policy" required>
+                        <label for="privacy-policy">I agree to the Privacy Policy and Terms of Service *</label>
+                    </div>
+                    <button type="submit" class="submit-button">SEND MESSAGE</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="section faq-section">
+    <div class="container">
+        <h2 class="section-title">Frequently Asked Questions</h2>
+        <div class="faq-container">
+            <div class="faq-item">
+                <h3 class="faq-question">What is an urban heat island?</h3>
+                <div class="faq-answer">
+                    <p>Urban heat islands are urbanized areas that experience higher temperatures than outlying areas. Structures such as buildings, roads, and other infrastructure absorb and re-emit the sun's heat more than natural landscapes, causing urban areas to become "islands" of higher temperatures.</p>
+                </div>
+            </div>
+            <div class="faq-item">
+                <h3 class="faq-question">How does the GreenGrids work?</h3>
+                <div class="faq-answer">
+                    <p>Our tool uses satellite thermal imagery, road and rooftop data, and environmental insights to identify and analyze urban heat islands. It then provides data-driven recommendations for strategic greening interventions, such as tree planting locations, to maximize cooling effects.</p>
+                </div>
+            </div>
+            <div class="faq-item">
+                <h3 class="faq-question">Can you analyze any city or urban area?</h3>
+                <div class="faq-answer">
+                    <p>Yes, our technology can be applied to cities and urban areas of any size around the world. We can provide solutions at both the city-wide level and for specific neighborhoods or districts.</p>
+                </div>
+            </div>
+            <div class="faq-item">
+                <h3 class="faq-question">How accurate is the temperature and green coverage data?</h3>
+                <div class="faq-answer">
+                    <p>The accuracy of our data depends on the specific product and the quality of available satellite imagery, but generally ranges from 75-95% accuracy. Our City-Wide Heat Maps have an accuracy of approximately 75%, while our detailed Local Heat Maps and Cooling Potential Maps have accuracy ratings of up to 95%.</p>
+                </div>
+            </div>
+            <div class="faq-item">
+                <h3 class="faq-question">How can cities use this information?</h3>
+                <div class="faq-answer">
+                    <p>Cities can use our tools to develop targeted climate adaptation strategies, prioritize green infrastructure investments, improve public health outcomes during heat waves, reduce energy consumption for cooling, and create more livable urban environments. The data and recommendations can inform urban planning, parks and recreation management, and climate action plans.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}
+
+{% block extra_css %}
+<style>
+    .mini-hero {
+        height: 40vh;
+    }
+
+    .contact-section {
+        padding-top: 5rem;
+        padding-bottom: 5rem;
+    }
+
+    .contact-grid {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 3rem;
+    }
+
+    .contact-info, .contact-form-container {
+        flex: 1 0 calc(50% - 1.5rem);
+        min-width: 300px;
+    }
+
+    .contact-details {
+        margin: 2rem 0;
+    }
+
+    .contact-item {
+        margin-bottom: 1.5rem;
+    }
+
+    .contact-item h3 {
+        margin-bottom: 0.5rem;
+        color: var(--primary-green);
+    }
+
+    .social-links h3 {
+        margin-bottom: 1rem;
+    }
+
+    .social-icons {
+        display: flex;
+        gap: 1rem;
+    }
+
+    .social-icon {
+        display: inline-block;
+        padding: 0.5rem 1rem;
+        background-color: var(--light-grey);
+        border-radius: 4px;
+        transition: background-color 0.3s ease;
+    }
+
+    .social-icon:hover {
+        background-color: var(--border-grey);
+    }
+
+    .contact-form-container {
+        background-color: white;
+        padding: 2rem;
+        border-radius: 8px;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    }
+
+    .form-group {
+        margin-bottom: 1.5rem;
+    }
+
+    .form-control {
+        width: 100%;
+        padding: 0.75rem;
+        border: 1px solid var(--border-grey);
+        border-radius: 4px;
+        font-size: 1rem;
+    }
+
+    .form-check {
+        display: flex;
+        align-items: center;
+        margin-bottom: 1.5rem;
+    }
+
+    .form-check input {
+        margin-right: 0.5rem;
+    }
+
+    .submit-button {
+        display: inline-block;
+        background-color: var(--secondary-green);
+        color: white;
+        padding: 1rem 2rem;
+        border: none;
+        border-radius: 4px;
+        font-weight: 700;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+    }
+
+    .submit-button:hover {
+        background-color: var(--primary-green);
+    }
+
+    .faq-section {
+        background-color: var(--light-grey);
+        padding: 5rem 0;
+    }
+
+    .faq-container {
+        max-width: 800px;
+        margin: 0 auto;
+    }
+
+    .faq-item {
+        margin-bottom: 1.5rem;
+        padding: 1.5rem;
+        background-color: white;
+        border-radius: 8px;
+        box-shadow: 0 3px 10px rgba(0, 0, 0, 0.05);
+    }
+
+    .faq-question {
+        cursor: pointer;
+        position: relative;
+        padding-right: 2rem;
+    }
+
+    .faq-question::after {
+        content: '+';
+        position: absolute;
+        right: 0;
+        top: 0;
+    }
+
+    .faq-answer {
+        margin-top: 1rem;
+        padding-top: 1rem;
+        border-top: 1px solid var(--border-grey);
+    }
+
+    @media (max-width: 768px) {
+        .contact-grid {
+            flex-direction: column;
+        }
+
+        .contact-form-container, .contact-info {
+            width: 100%;
+        }
+    }
+</style>
+{% endblock %}
+
+{% block extra_js %}
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        // FAQ Toggle
+        const faqQuestions = document.querySelectorAll('.faq-question');
+
+        faqQuestions.forEach(question => {
+            question.addEventListener('click', () => {
+                const answer = question.nextElementSibling;
+                const isOpen = answer.style.display === 'block';
+
+                answer.style.display = isOpen ? 'none' : 'block';
+                question.classList.toggle('active');
+
+                if (isOpen) {
+                    question.style.setProperty('--symbol', '+');
+                } else {
+                    question.style.setProperty('--symbol', '−');
+                }
+            });
+
+            // Initially hide all answers
+            const answer = question.nextElementSibling;
+            answer.style.display = 'none';
+            question.style.setProperty('--symbol', '+');
+        });
+
+        // Form Submission
+        const contactForm = document.querySelector('.contact-form');
+        if (contactForm) {
+            contactForm.addEventListener('submit', function(e) {
+                e.preventDefault();
+
+                // In a real application, this would send the form data to a server
+                alert('Thanks for your message! We will get back to you soon.');
+                contactForm.reset();
+            });
+        }
+    });
+</script>
+{% endblock %}

@@ -1,0 +1,270 @@
+{% extends 'base.html' %}
+
+{% block title %}GreenGrids - Emission Analysis & CO₂ Dispersion{% endblock %}
+
+{% block description %}Analyze district-level emission data and simulate real-time CO₂ dispersion across urban environments using wind and atmospheric modeling.{% endblock %}
+
+{% block content %}
+<section id="emission-hero" class="relative h-[70vh] flex items-center justify-start overflow-hidden">
+    <div class="absolute inset-0 z-0">
+        <img src="{{ url_for('static', filename='img/bgimage.jpeg') }}" alt="Atmospheric Analysis" class="w-full h-full object-cover">
+        <div class="absolute inset-0 bg-black opacity-50"></div>
+    </div>
+    
+    <div class="container mx-auto px-4 ml-[10%] md:ml-24 relative z-10">
+        <div class="max-w-2xl">
+            <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold text-white leading-tight mb-6">
+                <p class="rubik-80s-fade-regular">EMISSION ANALYSIS.</p>
+            </h1>
+            <p class="text-xl md:text-2xl text-white mb-8 parkinsans-gen">
+                Analyze district emissions and simulate CO₂ dispersion with real-time wind data.
+            </p>
+            <a href="#controls-section" class="inline-block">
+                <button class="view-grid-btn">
+                    START SIMULATION
+                    <div class="star-1"><svg viewBox="0 0 784.11 815.53"><path class="fil0" d="M392.05 0c-20.9,210.08 -184.06,378.41 -392.05,407.78 207.96,29.37 371.12,197.68 392.05,407.74 20.93,-210.06 184.09,-378.37 392.05,-407.74 -207.98,-29.38 -371.16,-197.69 -392.06,-407.78z"/></svg></div>
+                    <div class="star-2"><svg viewBox="0 0 784.11 815.53"><path class="fil0" d="M392.05 0c-20.9,210.08 -184.06,378.41 -392.05,407.78 207.96,29.37 371.12,197.68 392.05,407.74 20.93,-210.06 184.09,-378.37 392.05,-407.74 -207.98,-29.38 -371.16,-197.69 -392.06,-407.78z"/></svg></div>
+                    <div class="star-3"><svg viewBox="0 0 784.11 815.53"><path class="fil0" d="M392.05 0c-20.9,210.08 -184.06,378.41 -392.05,407.78 207.96,29.37 371.12,197.68 392.05,407.74 20.93,-210.06 184.09,-378.37 392.05,-407.74 -207.98,-29.38 -371.16,-197.69 -392.06,-407.78z"/></svg></div>
+                </button>
+            </a>
+        </div>
+    </div>
+</section>
+
+<section id="controls-section" class="py-16 bg-light-grey">
+    <div class="container mx-auto px-4">
+        <div class="bg-white rounded-xl shadow-lg p-8 max-w-6xl mx-auto">
+            <h2 class="text-2xl font-bold mb-8 text-dark-green border-b pb-4">Simulation Parameters</h2>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
+                <div>
+                    <label class="block text-gray-700 mb-2 font-bold parkinsans-gen">Year</label>
+                    <select id="year" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-green outline-none">
+                        {% for y in range(2015, 2026) %}
+                        <option value="{{ y }}" {% if y == 2025 %}selected{% endif %}>{{ y }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+                <div>
+                    <label class="block text-gray-700 mb-2 font-bold parkinsans-gen">Steps</label>
+                    <input type="number" id="steps" value="20" min="1" max="100" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-green outline-none">
+                </div>
+                <div>
+                    <label class="block text-gray-700 mb-2 font-bold parkinsans-gen">Wind Speed (m/s)</label>
+                    <input type="number" id="windSpeed" value="5" min="0" max="20" step="0.5" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-green outline-none">
+                </div>
+                <div>
+                    <label class="block text-gray-700 mb-2 font-bold parkinsans-gen">Wind Direction</label>
+                    <select id="windDirection" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-green outline-none">
+                        <option value="N">North</option>
+                        <option value="NE" selected>Northeast</option>
+                        <option value="E">East</option>
+                        <option value="SE">Southeast</option>
+                        <option value="S">South</option>
+                        <option value="SW">Southwest</option>
+                        <option value="W">West</option>
+                        <option value="NW">Northwest</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="flex flex-wrap justify-center gap-4">
+                <button id="loadEmissions" class="view-grid-btn">LOAD DATA</button>
+                <button id="runSimulation" class="view-grid-btn opacity-50 cursor-not-allowed" disabled>RUN DISPERSION</button>
+                <button id="resetData" class="view-grid-btn !bg-brown !border-brown">RESET</button>
+            </div>
+            
+            <div id="statusMessage" class="mt-6 text-center parkinsans-gen"></div>
+        </div>
+    </div>
+</section>
+
+<section id="statsSummary" class="py-12 bg-white hidden">
+    <div class="container mx-auto px-4">
+        <h2 class="text-3xl font-bold text-center mb-12 relative">
+            Emission Overview
+            <span class="absolute bottom-0 left-1/2 transform -translate-x-1/2 w-16 h-1 bg-secondary-green mt-4"></span>
+        </h2>
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8" id="statsGrid">
+            </div>
+    </div>
+</section>
+
+<section id="resultsSection" class="py-20 bg-light-grey hidden">
+    <div class="container mx-auto px-4">
+        <h2 class="text-3xl font-bold text-center mb-12">District Analysis</h2>
+        <div id="resultsGrid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            </div>
+    </div>
+</section>
+
+{% endblock %}
+
+{% block extra_js %}
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        let currentData = null;
+        
+        // DOM elements
+        const loadEmissionsBtn = document.getElementById('loadEmissions');
+        const runSimulationBtn = document.getElementById('runSimulation');
+        const resetDataBtn = document.getElementById('resetData');
+        const statusMessage = document.getElementById('statusMessage');
+        const statsSummary = document.getElementById('statsSummary');
+        const statsGrid = document.getElementById('statsGrid');
+        const resultsSection = document.getElementById('resultsSection');
+        const resultsGrid = document.getElementById('resultsGrid');
+
+        function showStatus(message, type = 'info') {
+            const colors = {
+                'error': 'text-red-600 bg-red-50',
+                'success': 'text-primary-green bg-green-50',
+                'loading': 'text-gray-600 animate-pulse'
+            };
+            statusMessage.innerHTML = `<div class="p-4 rounded-lg font-bold ${colors[type] || ''}">${message}</div>`;
+        }
+
+        async function loadEmissionData() {
+            showStatus('Fetching latest satellite emission data...', 'loading');
+            try {
+                const year = document.getElementById('year').value;
+                const response = await fetch(`/api/emissions/all?year=${year}`);
+                const data = await response.json();
+                
+                if (data.error) throw new Error(data.error);
+                
+                currentData = data;
+                displayEmissionData(data);
+                
+                runSimulationBtn.disabled = false;
+                runSimulationBtn.classList.remove('opacity-50', 'cursor-not-allowed');
+                showStatus(`Successfully loaded data for ${data.total_districts} districts`, 'success');
+                
+                statsSummary.classList.remove('hidden');
+                resultsSection.classList.remove('hidden');
+            } catch (error) {
+                showStatus(`Error: ${error.message}`, 'error');
+            }
+        }
+
+        function displayEmissionData(data) {
+            const districts = data.districts;
+            const totals = {
+                transport: districts.reduce((sum, d) => sum + d.transport_emission, 0),
+                industrial: districts.reduce((sum, d) => sum + d.industrial_emission, 0),
+                residential: districts.reduce((sum, d) => sum + d.residential_emission, 0)
+            };
+            const grandTotal = totals.transport + totals.industrial + totals.residential;
+
+            statsGrid.innerHTML = `
+                ${createStatCard(grandTotal, 'Total Metric Tons')}
+                ${createStatCard(totals.transport, 'Transport Sector')}
+                ${createStatCard(totals.industrial, 'Industrial Sector')}
+                ${createStatCard(totals.residential, 'Residential Sector')}
+            `;
+
+            resultsGrid.innerHTML = districts.map(d => `
+                <div class="bg-white rounded-xl shadow-md p-6 border-t-4 border-primary-green hover:shadow-xl transition-shadow">
+                    <h3 class="text-xl font-bold text-dark-green mb-4">${d.district}</h3>
+                    <div class="space-y-2 mb-6 parkinsans-gen">
+                        <div class="flex justify-between border-b pb-1 text-sm">
+                            <span>Transport</span><span class="font-bold">${d.transport_emission.toLocaleString()} t</span>
+                        </div>
+                        <div class="flex justify-between border-b pb-1 text-sm">
+                            <span>Industrial</span><span class="font-bold">${d.industrial_emission.toLocaleString()} t</span>
+                        </div>
+                        <div class="flex justify-between border-b pb-1 text-sm">
+                            <span>Residential</span><span class="font-bold">${d.residential_emission.toLocaleString()} t</span>
+                        </div>
+                    </div>
+                    <div class="bg-light-grey rounded-lg p-4 text-center">
+                        <p class="text-xs uppercase tracking-wider text-gray-500 mb-1">Estimated Concentration</p>
+                        <p class="text-2xl font-bold text-brown">${(d.total_emission / 100).toFixed(2)} <span class="text-sm">ppm</span></p>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        function createStatCard(value, label) {
+            return `
+                <div class="bg-light-grey rounded-xl p-8 text-center shadow-sm">
+                    <h3 class="text-3xl font-bold mb-2 text-primary-green">${Math.round(value).toLocaleString()}</h3>
+                    <p class="text-gray-600 parkinsans-gen font-medium">${label}</p>
+                </div>
+            `;
+        }
+
+        async function runDispersionSimulation() {
+            showStatus('Computing atmospheric dispersion vectors...', 'loading');
+            try {
+                const payload = {
+                    steps: parseInt(document.getElementById('steps').value),
+                    wind_speed: parseFloat(document.getElementById('windSpeed').value),
+                    wind_direction: document.getElementById('windDirection').value,
+                    year: document.getElementById('year').value
+                };
+
+                const response = await fetch('/api/dispersion/simulate', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(payload)
+                });
+                
+                const data = await response.json();
+                if (data.error) throw new Error(data.error);
+
+                displaySimulationResults(data);
+                showStatus('Simulation Complete: Visualizing dispersion results', 'success');
+            } catch (error) {
+                showStatus(`Simulation Failed: ${error.message}`, 'error');
+            }
+        }
+
+        function displaySimulationResults(data) {
+            resultsGrid.innerHTML = data.results.map(r => {
+                const delta = r.final_concentration - r.initial_concentration;
+                const deltaColor = delta > 0 ? 'text-red-500' : 'text-primary-green';
+                
+                return `
+                    <div class="bg-white rounded-xl shadow-md p-6 border-t-4 border-secondary-green">
+                        <h3 class="text-xl font-bold text-dark-green mb-4">${r.district}</h3>
+                        <div class="grid grid-cols-2 gap-4 mb-4 text-center">
+                            <div class="bg-gray-50 p-2 rounded">
+                                <p class="text-[10px] uppercase text-gray-400">Initial</p>
+                                <p class="font-bold">${r.initial_concentration.toFixed(2)}</p>
+                            </div>
+                            <div class="bg-gray-50 p-2 rounded">
+                                <p class="text-[10px] uppercase text-gray-400">Final</p>
+                                <p class="font-bold">${r.final_concentration.toFixed(2)}</p>
+                            </div>
+                        </div>
+                        <div class="flex justify-between items-center bg-light-grey p-3 rounded-lg mb-4">
+                            <span class="text-sm font-bold">Shift</span>
+                            <span class="font-bold ${deltaColor}">${delta > 0 ? '+' : ''}${delta.toFixed(2)} ppm</span>
+                        </div>
+                        <div class="text-[11px] text-gray-400 italic">
+                            Affected by: ${r.neighbors.slice(0, 3).join(', ')}...
+                        </div>
+                    </div>
+                `;
+            }).join('');
+        }
+
+        function resetData() {
+            currentData = null;
+            runSimulationBtn.disabled = true;
+            runSimulationBtn.classList.add('opacity-50', 'cursor-not-allowed');
+            statsSummary.classList.add('hidden');
+            resultsSection.classList.add('hidden');
+            statusMessage.innerHTML = '';
+        }
+
+        loadEmissionsBtn.addEventListener('click', loadEmissionData);
+        runSimulationBtn.addEventListener('click', runDispersionSimulation);
+        resetDataBtn.addEventListener('click', resetData);
+        
+        // Initial load
+        loadEmissionData();
+    });
+</script>
+{% endblock %}

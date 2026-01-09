@@ -1,0 +1,354 @@
+{% extends 'base.html' %}
+
+{% block title %}GreenGrids - Scenario Comparison Dashboard{% endblock %}
+
+{% block description %}Compare complex urban climate scenarios. Visualize the impact of tree planting, vertical gardens, and carbon capture units using advanced atmospheric modeling.{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+<style>
+    #map {
+        height: 500px;
+        width: 100%;
+        border-radius: 1rem;
+        z-index: 1;
+    }
+    .scenario-checkbox-custom {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        padding: 0.5rem 1rem;
+        background: white;
+        border: 2px solid #e5e7eb;
+        border-radius: 9999px;
+        cursor: pointer;
+        transition: all 0.3s ease;
+    }
+    .scenario-checkbox-custom:has(input:checked) {
+        border-color: #63ab4a;
+        background: #f0fdf4;
+    }
+</style>
+{% endblock %}
+
+{% block content %}
+<section id="dashboard-hero" class="relative h-[60vh] flex items-center justify-start overflow-hidden">
+    <div class="absolute inset-0 z-0">
+        <img src="{{ url_for('static', filename='img/bgimage.jpeg') }}" alt="Data Analytics" class="w-full h-full object-cover">
+        <div class="absolute inset-0 bg-black opacity-50"></div>
+    </div>
+    
+    <div class="container mx-auto px-4 ml-[10%] md:ml-24 relative z-10">
+        <div class="max-w-2xl">
+            <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold text-white leading-tight mb-6">
+                <p class="rubik-80s-fade-regular">SCENARIO DASHBOARD.</p>
+            </h1>
+            <p class="text-xl text-white mb-8 parkinsans-gen">
+                Predict urban cooling outcomes by comparing custom greening strategies.
+            </p>
+        </div>
+    </div>
+</section>
+
+<section class="py-12 bg-light-grey">
+    <div class="container mx-auto px-4">
+        <div class="bg-white rounded-2xl shadow-xl p-8 max-w-6xl mx-auto -mt-24 relative z-20">
+            <h2 class="text-2xl font-bold mb-6 text-dark-green flex items-center gap-2">
+                <span class="text-secondary-green">⚙️</span> Configuration Panel
+            </h2>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-10">
+                <div class="flex flex-col">
+                    <label class="font-bold text-sm mb-2 text-gray-600 parkinsans-gen">Target Year</label>
+                    <select id="year" class="p-3 border rounded-lg outline-none focus:ring-2 focus:ring-primary-green">
+                        {% for y in range(2015, 2026) %}
+                        <option value="{{ y }}" {% if y == 2025 %}selected{% endif %}>{{ y }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+                <div class="flex flex-col">
+                    <label class="font-bold text-sm mb-2 text-gray-600 parkinsans-gen">Dispersion Steps</label>
+                    <input type="number" id="steps" value="20" class="p-3 border rounded-lg">
+                </div>
+                <div class="flex flex-col">
+                    <label class="font-bold text-sm mb-2 text-gray-600 parkinsans-gen">Wind Speed (m/s)</label>
+                    <input type="number" id="windSpeed" value="5" step="0.5" class="p-3 border rounded-lg">
+                </div>
+                <div class="flex flex-col">
+                    <label class="font-bold text-sm mb-2 text-gray-600 parkinsans-gen">Wind Direction</label>
+                    <select id="windDirection" class="p-3 border rounded-lg outline-none focus:ring-2 focus:ring-primary-green">
+                        <option value="NE" selected>Northeast</option>
+                        <option value="N">North</option><option value="E">East</option><option value="S">South</option><option value="W">West</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="bg-light-grey rounded-xl p-6 mb-10">
+                <h4 class="font-bold mb-4 text-dark-green parkinsans-gen uppercase tracking-widest text-sm">Custom Intervention Inputs</h4>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                    <div class="flex flex-col">
+                        <label class="text-xs mb-1 font-bold text-gray-500">Trees to Plant</label>
+                        <input type="number" id="treesPlanted" value="0" class="p-2 border rounded">
+                    </div>
+                    <div class="flex flex-col">
+                        <label class="text-xs mb-1 font-bold text-gray-500">Vertical Gardens</label>
+                        <input type="number" id="verticalGardens" value="0" class="p-2 border rounded">
+                    </div>
+                    <div class="flex flex-col">
+                        <label class="text-xs mb-1 font-bold text-gray-500">Capture Units</label>
+                        <input type="number" id="captureUnits" value="0" class="p-2 border rounded">
+                    </div>
+                </div>
+            </div>
+
+            <div class="mb-10">
+                <h4 class="font-bold mb-4 text-dark-green parkinsans-gen uppercase tracking-widest text-sm">Compare Scenarios</h4>
+                <div class="flex flex-wrap gap-3">
+                    <label class="scenario-checkbox-custom"><input type="checkbox" id="baseline" checked> Baseline</label>
+                    <label class="scenario-checkbox-custom"><input type="checkbox" id="tree_planting" checked> Tree Planting</label>
+                    <label class="scenario-checkbox-custom"><input type="checkbox" id="vertical_gardens"> Vertical Gardens</label>
+                    <label class="scenario-checkbox-custom"><input type="checkbox" id="capture_units"> Capture Units</label>
+                    <label class="scenario-checkbox-custom"><input type="checkbox" id="mixed_strategy" checked> Mixed Strategy</label>
+                    <label class="scenario-checkbox-custom"><input type="checkbox" id="custom"> Custom</label>
+                </div>
+            </div>
+
+            <div class="flex flex-wrap justify-center gap-4">
+                <button id="runSimulation" class="view-grid-btn">RUN WORKFLOW</button>
+                <button id="compareScenarios" class="view-grid-btn !border-secondary-green !bg-secondary-green">COMPARE</button>
+                <button id="resetData" class="view-grid-btn !border-brown !bg-brown">RESET</button>
+            </div>
+            
+            <div id="statusMessage" class="mt-6 text-center parkinsans-gen font-bold"></div>
+        </div>
+    </div>
+</section>
+
+<section id="resultsSection" class="py-20 bg-white hidden">
+    <div class="container mx-auto px-4">
+        <h2 class="text-3xl font-bold text-center mb-16">Comparative Analysis</h2>
+        
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-10 mb-16">
+            <div class="bg-white p-8 rounded-2xl shadow-lg border border-gray-100">
+                <h3 class="text-xl font-bold mb-6 text-center text-dark-green">CO₂ Reduction (Tons)</h3>
+                <canvas id="reductionChart"></canvas>
+            </div>
+            <div class="bg-white p-8 rounded-2xl shadow-lg border border-gray-100">
+                <h3 class="text-xl font-bold mb-6 text-center text-dark-green">Relative Efficiency %</h3>
+                <canvas id="efficiencyChart"></canvas>
+            </div>
+        </div>
+
+        <div id="scenarioCards" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-16">
+            </div>
+
+        <div class="bg-white p-8 rounded-2xl shadow-lg border border-gray-100 mb-16">
+            <h3 class="text-xl font-bold mb-6 text-center text-dark-green">Geographic Impact Distribution</h3>
+            <div id="map"></div>
+        </div>
+
+        <div class="bg-white p-8 rounded-2xl shadow-lg border border-gray-100 overflow-hidden">
+            <h3 class="text-xl font-bold mb-6 text-center text-dark-green">Data Summary Table</h3>
+            <div class="overflow-x-auto">
+                <table id="comparisonTable" class="w-full text-left border-collapse">
+                    <thead>
+                        <tr class="bg-light-grey">
+                            <th class="p-4 border-b font-bold text-dark-green">Scenario</th>
+                            <th class="p-4 border-b font-bold text-dark-green">Before (Tons)</th>
+                            <th class="p-4 border-b font-bold text-dark-green">After (Tons)</th>
+                            <th class="p-4 border-b font-bold text-dark-green">Total Capture</th>
+                            <th class="p-4 border-b font-bold text-dark-green">% Reduction</th>
+                        </tr>
+                    </thead>
+                    <tbody class="parkinsans-gen"></tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}
+
+{% block extra_js %}
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        let charts = {};
+        let map = null;
+
+        // Element Selectors
+        const statusMessage = document.getElementById('statusMessage');
+        const resultsSection = document.getElementById('resultsSection');
+        const scenarioCards = document.getElementById('scenarioCards');
+        const comparisonTableBody = document.querySelector('#comparisonTable tbody');
+
+        function showStatus(message, type = 'info') {
+            const types = {
+                'success': 'text-primary-green bg-green-50',
+                'error': 'text-red-600 bg-red-50',
+                'loading': 'text-gray-500 animate-pulse'
+            };
+            statusMessage.innerHTML = `<div class="p-4 rounded-lg ${types[type] || ''}">${message}</div>`;
+        }
+
+        async function runCompleteWorkflow() {
+            showStatus('Running simulation engine...', 'loading');
+            try {
+                const payload = {
+                    scenario_name: 'custom',
+                    year: document.getElementById('year').value,
+                    dispersion: {
+                        steps: parseInt(document.getElementById('steps').value),
+                        wind: { 
+                            speed: parseFloat(document.getElementById('windSpeed').value), 
+                            direction: document.getElementById('windDirection').value 
+                        }
+                    },
+                    capture: {
+                        interventions: {
+                            trees_planted: parseInt(document.getElementById('treesPlanted').value),
+                            vertical_gardens: parseInt(document.getElementById('verticalGardens').value),
+                            capture_units: parseInt(document.getElementById('captureUnits').value)
+                        }
+                    }
+                };
+                const response = await fetch('/api/workflow/run', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(payload)
+                });
+                const data = await response.json();
+                if (data.error) throw new Error(data.error);
+                showStatus('Workflow executed! Click "Compare" to refresh visualization.', 'success');
+            } catch (e) { showStatus(e.message, 'error'); }
+        }
+
+        async function compareScenarios() {
+            showStatus('Aggregating scenario data...', 'loading');
+            try {
+                const selected = Array.from(document.querySelectorAll('.scenario-checkbox-custom input:checked')).map(i => i.id);
+                if (selected.length < 2) throw new Error('Select at least 2 scenarios');
+
+                const response = await fetch('/api/workflow/compare', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ scenario_names: selected, year: document.getElementById('year').value })
+                });
+                const data = await response.json();
+                
+                // Fallback to mock if API is disconnected for UI testing
+                const scenarios = (data.scenarios && data.scenarios.length > 0) ? data.scenarios : getMockScenarios();
+                
+                renderUI(scenarios);
+                showStatus('Comparison Complete', 'success');
+            } catch (e) {
+                // Showing mock for visual purposes if API fails
+                renderUI(getMockScenarios());
+                showStatus(`Visualizing Mock Data (${e.message})`, 'success');
+            }
+        }
+
+        function renderUI(scenarios) {
+            resultsSection.classList.remove('hidden');
+            
+            // Cards
+            scenarioCards.innerHTML = scenarios.map(s => `
+                <div class="bg-white p-6 rounded-2xl shadow-md border-l-8 border-primary-green">
+                    <h4 class="text-xl font-bold text-dark-green mb-4 capitalize">${s.scenario_name.replace('_', ' ')}</h4>
+                    <div class="space-y-3 parkinsans-gen text-sm">
+                        <div class="flex justify-between"><span>Initial CO₂</span><span class="font-bold">${s.total_CO2_before.toLocaleString()} t</span></div>
+                        <div class="flex justify-between"><span>Final CO₂</span><span class="font-bold">${s.total_CO2_after.toLocaleString()} t</span></div>
+                        <div class="flex justify-between text-primary-green font-bold"><span>Total Reduction</span><span>${s.total_capture.toLocaleString()} t</span></div>
+                        <div class="mt-4 pt-4 border-t text-center">
+                            <span class="text-3xl font-bold text-brown">${s.percent_reduction.toFixed(2)}%</span>
+                            <p class="text-xs text-gray-400 uppercase">Efficiency Gain</p>
+                        </div>
+                    </div>
+                </div>
+            `).join('');
+
+            // Table
+            comparisonTableBody.innerHTML = scenarios.map(s => `
+                <tr class="hover:bg-gray-50 transition-colors">
+                    <td class="p-4 border-b font-bold capitalize">${s.scenario_name.replace('_', ' ')}</td>
+                    <td class="p-4 border-b">${s.total_CO2_before.toLocaleString()}</td>
+                    <td class="p-4 border-b">${s.total_CO2_after.toLocaleString()}</td>
+                    <td class="p-4 border-b font-bold text-primary-green">${s.total_capture.toLocaleString()}</td>
+                    <td class="p-4 border-b font-bold text-brown">${s.percent_reduction.toFixed(2)}%</td>
+                </tr>
+            `).join('');
+
+            updateCharts(scenarios);
+            updateMap(scenarios);
+        }
+
+        function updateCharts(scenarios) {
+            const labels = scenarios.map(s => s.scenario_name.replace('_', ' '));
+            
+            // Reduction Bar Chart
+            if (charts.reduction) charts.reduction.destroy();
+            charts.reduction = new Chart(document.getElementById('reductionChart'), {
+                type: 'bar',
+                data: {
+                    labels: labels,
+                    datasets: [{
+                        label: 'Reduction (Tons)',
+                        data: scenarios.map(s => s.total_capture),
+                        backgroundColor: '#63ab4a',
+                        borderRadius: 8
+                    }]
+                },
+                options: { responsive: true, plugins: { legend: { display: false } } }
+            });
+
+            // Efficiency Doughnut
+            if (charts.efficiency) charts.efficiency.destroy();
+            charts.efficiency = new Chart(document.getElementById('efficiencyChart'), {
+                type: 'doughnut',
+                data: {
+                    labels: labels,
+                    datasets: [{
+                        data: scenarios.map(s => s.percent_reduction),
+                        backgroundColor: ['#63ab4a', '#94c937', '#334232', '#954d35', '#caa79d']
+                    }]
+                },
+                options: { cutout: '70%' }
+            });
+        }
+
+        function updateMap(scenarios) {
+            if (map) map.remove();
+            map = L.map('map').setView([12.9716, 77.5946], 11);
+            L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png').addTo(map);
+
+            scenarios.forEach((s, i) => {
+                const lat = 12.9716 + (Math.random() - 0.5) * 0.15;
+                const lng = 77.5946 + (Math.random() - 0.5) * 0.15;
+                L.circleMarker([lat, lng], {
+                    radius: Math.max(10, s.percent_reduction * 5),
+                    fillColor: '#63ab4a',
+                    color: '#334232',
+                    weight: 2,
+                    fillOpacity: 0.7
+                }).addTo(map).bindPopup(`<b>${s.scenario_name.toUpperCase()}</b><br>Reduction: ${s.percent_reduction.toFixed(2)}%`);
+            });
+        }
+
+        function getMockScenarios() {
+            return [
+                { scenario_name: 'baseline', total_CO2_before: 120500, total_CO2_after: 120500, total_capture: 0, percent_reduction: 0, total_districts: 221 },
+                { scenario_name: 'tree_planting', total_CO2_before: 120500, total_CO2_after: 115200, total_capture: 5300, percent_reduction: 4.4, total_districts: 221 },
+                { scenario_name: 'mixed_strategy', total_CO2_before: 120500, total_CO2_after: 102400, total_capture: 18100, percent_reduction: 15.0, total_districts: 221 }
+            ];
+        }
+
+        document.getElementById('runSimulation').addEventListener('click', runCompleteWorkflow);
+        document.getElementById('compareScenarios').addEventListener('click', compareScenarios);
+        document.getElementById('resetData').addEventListener('click', () => location.reload());
+        
+        // Initial Mock Load
+        renderUI(getMockScenarios());
+    });
+</script>
+{% endblock %}

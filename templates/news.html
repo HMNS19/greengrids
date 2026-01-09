@@ -1,0 +1,327 @@
+{% extends 'base.html' %}
+
+{% block title %}GreenGrids - News & Updates{% endblock %}
+
+{% block content %}
+<section class="hero mini-hero">
+    <div class="hero-content">
+        <h1>NEWS & UPDATES</h1>
+    </div>
+</section>
+
+<section class="section news-section">
+    <div class="container">
+        <div class="news-grid">
+            <div class="news-item featured">
+                <div class="news-image">
+                    <img src="{{ url_for('static', filename='img/news1.jpg') }}" alt="Urban Greening Project">
+                    <div class="news-date">
+                        <span class="day">15</span>
+                        <span class="month">APR</span>
+                        <span class="year">2025</span>
+                    </div>
+                </div>
+                <div class="news-content">
+                    <h2 class="news-title">Major City Adopts GreenGrids to Combat Rising Temperatures</h2>
+                    <p class="news-excerpt">The Metropolitan Government has partnered with GreenGrids to develop a comprehensive strategy for tackling urban heat islands across the city, with plans to plant over 10,000 trees in strategic locations over the next five years.</p>
+                    <a href="#" class="read-more">Read More</a>
+                </div>
+            </div>
+
+            <div class="news-item">
+                <div class="news-image">
+                    <img src="{{ url_for('static', filename='img/news2.jpg') }}" alt="Research Findings">
+                    <div class="news-date">
+                        <span class="day">02</span>
+                        <span class="month">APR</span>
+                        <span class="year">2025</span>
+                    </div>
+                </div>
+                <div class="news-content">
+                    <h2 class="news-title">New Research Shows Strategic Tree Planting Can Reduce Urban Temperatures by Up to 5°C</h2>
+                    <p class="news-excerpt">A groundbreaking study conducted in collaboration with leading universities has demonstrated that data-driven tree planting strategies can significantly reduce urban temperatures and improve air quality.</p>
+                    <a href="#" class="read-more">Read More</a>
+                </div>
+            </div>
+
+            <div class="news-item">
+                <div class="news-image">
+                    <img src="{{ url_for('static', filename='img/news3.jpg') }}" alt="Award Ceremony">
+                    <div class="news-date">
+                        <span class="day">20</span>
+                        <span class="month">MAR</span>
+                        <span class="year">2025</span>
+                    </div>
+                </div>
+                <div class="news-content">
+                    <h2 class="news-title">GreenGrids Wins Environmental Innovation Award</h2>
+                    <p class="news-excerpt">Our solution has been recognized for its innovative approach to urban heat island mitigation, receiving the prestigious Environmental Technology Innovation Award for 2025.</p>
+                    <a href="#" class="read-more">Read More</a>
+                </div>
+            </div>
+
+            <div class="news-item">
+                <div class="news-image">
+                    <img src="{{ url_for('static', filename='img/news4.jpg') }}" alt="New Features Launch">
+                    <div class="news-date">
+                        <span class="day">05</span>
+                        <span class="month">MAR</span>
+                        <span class="year">2025</span>
+                    </div>
+                </div>
+                <div class="news-content">
+                    <h2 class="news-title">New Feature: Predictive Cooling Analysis Now Available</h2>
+                    <p class="news-excerpt">We're excited to announce the launch of our new Predictive Cooling Analysis feature, which uses advanced AI algorithms to simulate and visualize the potential temperature reductions from proposed greening interventions.</p>
+                    <a href="#" class="read-more">Read More</a>
+                </div>
+            </div>
+
+            <div class="news-item">
+                <div class="news-image">
+                    <img src="{{ url_for('static', filename='img/news5.jpg') }}" alt="Partnership Announcement">
+                    <div class="news-date">
+                        <span class="day">18</span>
+                        <span class="month">FEB</span>
+                        <span class="year">2025</span>
+                    </div>
+                </div>
+                <div class="news-content">
+                    <h2 class="news-title">GreenGrids Partners with Global Climate Initiative</h2>
+                    <p class="news-excerpt">We're proud to announce our partnership with the Global Climate Resilience Initiative, expanding our reach to help cities worldwide combat urban heat islands and improve climate resilience.</p>
+                    <a href="#" class="read-more">Read More</a>
+                </div>
+            </div>
+
+            <div class="news-item">
+                <div class="news-image">
+                    <img src="{{ url_for('static', filename='img/news6.jpg') }}" alt="Case Study">
+                    <div class="news-date">
+                        <span class="day">30</span>
+                        <span class="month">JAN</span>
+                        <span class="year">2025</span>
+                    </div>
+                </div>
+                <div class="news-content">
+                    <h2 class="news-title">Case Study: Riverside District Achieves 3°C Temperature Reduction in One Year</h2>
+                    <p class="news-excerpt">Our latest case study highlights the remarkable success of the Riverside District's urban cooling project, which used our mapping tool to strategically place green infrastructure and achieve measurable temperature reductions.</p>
+                    <a href="#" class="read-more">Read More</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="pagination">
+            <a href="#" class="pagination-link active">1</a>
+            <a href="#" class="pagination-link">2</a>
+            <a href="#" class="pagination-link">3</a>
+            <a href="#" class="pagination-link next">Next »</a>
+        </div>
+
+        <div class="newsletter">
+            <h3>Subscribe to Our Newsletter</h3>
+            <p>Stay updated with the latest news, research findings, and product updates from GreenGrids.</p>
+            <form class="newsletter-form">
+                <input type="email" placeholder="Your email address" class="form-control" required>
+                <button type="submit" class="submit-button">SUBSCRIBE</button>
+            </form>
+        </div>
+    </div>
+</section>
+{% endblock %}
+
+{% block extra_css %}
+<style>
+    .mini-hero {
+        height: 40vh;
+    }
+
+    .news-section {
+        padding: 5rem 0;
+    }
+
+    .news-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+        gap: 2rem;
+        margin-bottom: 3rem;
+    }
+
+    .news-item {
+        background-color: white;
+        border-radius: 8px;
+        overflow: hidden;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .news-item:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+    }
+
+    .news-item.featured {
+        grid-column: 1 / -1;
+        display: flex;
+        flex-direction: column;
+    }
+
+    @media (min-width: 768px) {
+        .news-item.featured {
+            flex-direction: row;
+        }
+
+        .news-item.featured .news-image {
+            flex: 0 0 50%;
+        }
+    }
+
+    .news-image {
+        position: relative;
+        height: 200px;
+    }
+
+    .news-image img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+
+    .news-date {
+        position: absolute;
+        top: 10px;
+        right: 10px;
+        background-color: white;
+        border-radius: 4px;
+        padding: 0.5rem;
+        text-align: center;
+        box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+    }
+
+    .news-date .day {
+        display: block;
+        font-size: 1.5rem;
+        font-weight: 700;
+        color: var(--dark-green);
+        line-height: 1;
+    }
+
+    .news-date .month, .news-date .year {
+        display: block;
+        font-size: 0.8rem;
+        color: var(--medium-grey);
+    }
+
+    .news-content {
+        padding: 1.5rem;
+    }
+
+    .news-title {
+        font-size: 1.25rem;
+        margin-bottom: 1rem;
+    }
+
+    .news-excerpt {
+        color: var(--medium-grey);
+        margin-bottom: 1rem;
+    }
+
+    .read-more {
+        display: inline-block;
+        padding: 0.5rem 0;
+        color: var(--primary-green);
+        font-weight: 700;
+        text-transform: uppercase;
+        font-size: 0.9rem;
+        border-bottom: 2px solid transparent;
+        transition: border-color 0.3s ease;
+    }
+
+    .read-more:hover {
+        border-color: var(--primary-green);
+    }
+
+    .pagination {
+        display: flex;
+        justify-content: center;
+        margin-bottom: 3rem;
+    }
+
+    .pagination-link {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 40px;
+        height: 40px;
+        margin: 0 0.5rem;
+        border-radius: 50%;
+        background-color: white;
+        color: var(--dark-green);
+        font-weight: 700;
+        transition: background-color 0.3s ease, color 0.3s ease;
+    }
+
+    .pagination-link.active {
+        background-color: var(--secondary-green);
+        color: white;
+    }
+
+    .pagination-link:hover:not(.active) {
+        background-color: var(--light-grey);
+    }
+
+    .pagination-link.next {
+        width: auto;
+        padding: 0 1rem;
+        border-radius: 20px;
+    }
+
+    .newsletter {
+        max-width: 600px;
+        margin: 0 auto;
+        padding: 2rem;
+        background-color: white;
+        border-radius: 8px;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        text-align: center;
+    }
+
+    .newsletter h3 {
+        margin-bottom: 1rem;
+    }
+
+    .newsletter p {
+        margin-bottom: 1.5rem;
+    }
+
+    .newsletter-form {
+        display: flex;
+        gap: 1rem;
+    }
+
+    @media (max-width: 576px) {
+        .newsletter-form {
+            flex-direction: column;
+        }
+    }
+</style>
+{% endblock %}
+
+{% block extra_js %}
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        // Newsletter form submission
+        const newsletterForm = document.querySelector('.newsletter-form');
+
+        if (newsletterForm) {
+            newsletterForm.addEventListener('submit', function(e) {
+                e.preventDefault();
+
+                const email = this.querySelector('input[type="email"]').value;
+
+                // In a real application, this would send the email to a server
+                alert(`Thank you for subscribing with ${email}! You'll receive our next newsletter.`);
+                this.reset();
+            });
+        }
+    });
+</script>
+{% endblock %}

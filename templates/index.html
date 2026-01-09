@@ -1,0 +1,434 @@
+{% extends 'base.html' %}
+
+{% block title %}GreenGrids - Home{% endblock %}
+
+{% block content %}
+<section id="hero-section" class="relative h-screen bg-cover bg-center flex items-center bg-dark-green">
+    <!-- <div class="absolute inset-0 bg-black bg-opacity-50"></div> -->
+    <div class="container mx-auto px-4 relative z-10 ml-[10%] md:ml-24 ">
+        <div class="max-w-xl">
+            <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold text-white leading-tight mb-6">
+                <p class="rubik-80s-fade-regular">MAPPING HEAT.<br>PLANTING HOPE.</p>
+            </h1>
+         
+            <a href="{{ url_for('map') }}" class="inline-block">
+                <button class="view-grid-btn text-1 xl md:text-2xl px-11 py-4 parkinsans-gen">
+                    VIEW GREEN GRID
+                    <div class="star-1">
+                        <svg xmlns="http://www.w3.org/2000/svg" xml:space="preserve" version="1.1" style="shape-rendering:geometricPrecision; text-rendering:geometricPrecision; image-rendering:optimizeQuality; fill-rule:evenodd; clip-rule:evenodd" viewBox="0 0 784.11 815.53" xmlns:xlink="http://www.w3.org/1999/xlink">
+                            <defs></defs>
+                            <g id="Layer_x0020_1">
+                                <metadata id="CorelCorpID_0Corel-Layer"></metadata>
+                                <path class="fil0" d="M392.05 0c-20.9,210.08 -184.06,378.41 -392.05,407.78 207.96,29.37 371.12,197.68 392.05,407.74 20.93,-210.06 184.09,-378.37 392.05,-407.74 -207.98,-29.38 -371.16,-197.69 -392.06,-407.78z"></path>
+                            </g>
+                        </svg>
+                    </div>
+                    <div class="star-2">
+                        <svg xmlns="http://www.w3.org/2000/svg" xml:space="preserve" version="1.1" style="shape-rendering:geometricPrecision; text-rendering:geometricPrecision; image-rendering:optimizeQuality; fill-rule:evenodd; clip-rule:evenodd" viewBox="0 0 784.11 815.53" xmlns:xlink="http://www.w3.org/1999/xlink">
+                            <defs></defs>
+                            <g id="Layer_x0020_1">
+                                <metadata id="CorelCorpID_0Corel-Layer"></metadata>
+                                <path class="fil0" d="M392.05 0c-20.9,210.08 -184.06,378.41 -392.05,407.78 207.96,29.37 371.12,197.68 392.05,407.74 20.93,-210.06 184.09,-378.37 392.05,-407.74 -207.98,-29.38 -371.16,-197.69 -392.06,-407.78z"></path>
+                            </g>
+                        </svg>
+                    </div>
+                    <div class="star-3">
+                        <svg xmlns="http://www.w3.org/2000/svg" xml:space="preserve" version="1.1" style="shape-rendering:geometricPrecision; text-rendering:geometricPrecision; image-rendering:optimizeQuality; fill-rule:evenodd; clip-rule:evenodd" viewBox="0 0 784.11 815.53" xmlns:xlink="http://www.w3.org/1999/xlink">
+                            <defs></defs>
+                            <g id="Layer_x0020_1">
+                                <metadata id="CorelCorpID_0Corel-Layer"></metadata>
+                                <path class="fil0" d="M392.05 0c-20.9,210.08 -184.06,378.41 -392.05,407.78 207.96,29.37 371.12,197.68 392.05,407.74 20.93,-210.06 184.09,-378.37 392.05,-407.74 -207.98,-29.38 -371.16,-197.69 -392.06,-407.78z"></path>
+                            </g>
+                        </svg>
+                    </div>
+                    <div class="star-4">
+                        <svg xmlns="http://www.w3.org/2000/svg" xml:space="preserve" version="1.1" style="shape-rendering:geometricPrecision; text-rendering:geometricPrecision; image-rendering:optimizeQuality; fill-rule:evenodd; clip-rule:evenodd" viewBox="0 0 784.11 815.53" xmlns:xlink="http://www.w3.org/1999/xlink">
+                            <defs></defs>
+                            <g id="Layer_x0020_1">
+                                <metadata id="CorelCorpID_0Corel-Layer"></metadata>
+                                <path class="fil0" d="M392.05 0c-20.9,210.08 -184.06,378.41 -392.05,407.78 207.96,29.37 371.12,197.68 392.05,407.74 20.93,-210.06 184.09,-378.37 392.05,-407.74 -207.98,-29.38 -371.16,-197.69 -392.06,-407.78z"></path>
+                            </g>
+                        </svg>
+                    </div>
+                    <div class="star-5">
+                        <svg xmlns="http://www.w3.org/2000/svg" xml:space="preserve" version="1.1" style="shape-rendering:geometricPrecision; text-rendering:geometricPrecision; image-rendering:optimizeQuality; fill-rule:evenodd; clip-rule:evenodd" viewBox="0 0 784.11 815.53" xmlns:xlink="http://www.w3.org/1999/xlink">
+                            <defs></defs>
+                            <g id="Layer_x0020_1">
+                                <metadata id="CorelCorpID_0Corel-Layer"></metadata>
+                                <path class="fil0" d="M392.05 0c-20.9,210.08 -184.06,378.41 -392.05,407.78 207.96,29.37 371.12,197.68 392.05,407.74 20.93,-210.06 184.09,-378.37 392.05,-407.74 -207.98,-29.38 -371.16,-197.69 -392.06,-407.78z"></path>
+                            </g>
+                        </svg>
+                    </div>
+                    <div class="star-6">
+                        <svg xmlns="http://www.w3.org/2000/svg" xml:space="preserve" version="1.1" style="shape-rendering:geometricPrecision; text-rendering:geometricPrecision; image-rendering:optimizeQuality; fill-rule:evenodd; clip-rule:evenodd" viewBox="0 0 784.11 815.53" xmlns:xlink="http://www.w3.org/1999/xlink">
+                            <defs></defs>
+                            <g id="Layer_x0020_1">
+                                <metadata id="CorelCorpID_0Corel-Layer"></metadata>
+                                <path class="fil0" d="M392.05 0c-20.9,210.08 -184.06,378.41 -392.05,407.78 207.96,29.37 371.12,197.68 392.05,407.74 20.93,-210.06 184.09,-378.37 392.05,-407.74 -207.98,-29.38 -371.16,-197.69 -392.06,-407.78z"></path>
+                            </g>
+                        </svg>
+                    </div>
+                </button>
+            </a>
+        </div>
+    </div>
+</section>
+
+<section class="section features bg-light-grey py-4">
+    <div class="container mx-auto px-4">
+        <h2 class="text-3xl md:text-4xl font-bold text-center mb-4 relative">CITIES ARE GETTING HOTTER
+            <span class="absolute bottom-0 left-1/2 transform -translate-x-1/2 w-16 h-1 bg-secondary-green mt-4"></span>
+        </h2>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+            <div class="text-lg">
+                <p class="mb-4">Urban areas are heating up due to the Urban Heat Island effect, where materials like concrete and asphalt absorb and trap heat. With limited vegetation and rising energy consumption, cities are stuck in a cycle of extreme temperatures and emissions.</p>
+                <p>As climate change worsens, this makes urban life increasingly difficult—especially for vulnerable communities. One of the most effective and natural solutions is strategic tree planting and expanding green spaces, which can cool cities, clean the air, and restore balance to the urban environment.</p>
+            </div>
+            <div class="relative h-full flex items-center justify-center p-4">
+                <img src="{{ url_for('static', filename='img/urbanheat.png') }}" alt="Urban Heat Island Effect Diagram" class="w-full max-w-xl mx-auto object-contain rounded-lg">
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="section features bg-light-grey py-4">
+    <div class="container mx-auto px-4">
+        <h2 class="text-3xl md:text-4xl font-bold text-center mb-4 relative">
+            COOLING CITIES, ONE TREE AT A TIME
+            <span class="absolute bottom-0 left-1/2 transform -translate-x-1/2 w-16 h-1 bg-secondary-green mt-4"></span>
+        </h2>
+        <p class="text-lg text-center max-w-4xl mx-auto mb-12 parkinsans-gen">The GreenGrids is a service that quickly delivers comprehensive information about urban heat islands and recommends strategic greening interventions, such as tree planting. The goal is to make cities cooler, greener, and more livable by guiding urban planning efforts with data-driven insights.</p>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <div class="bg-white rounded-lg overflow-hidden shadow-md hover:shadow-xl transition-shadow duration-300 transform hover:-translate-y-1 duration-300">
+                <img src="{{ url_for('static', filename='img/Heat.png') }}" alt="Heat Mapping" class="w-full h-48 object-cover">
+                <div class="p-6">
+                    <h3 class="text-xl font-bold mb-3 text-dark-green">Heat Mapping</h3>
+                    <p class="text-gray-700 parkinsans-gen">Identify urban heat islands and high-temperature zones in cities using satellite thermal imaging and environmental data.</p>
+                </div>
+            </div>
+            <div class="bg-white rounded-lg overflow-hidden shadow-md hover:shadow-xl transition-shadow duration-300 transform hover:-translate-y-1 duration-300">
+                <img src="{{ url_for('static', filename='img/Greening.png') }}" alt="Strategic Greening" class="w-full h-48 object-cover">
+                <div class="p-6">
+                    <h3 class="text-xl font-bold mb-3 text-dark-green">Strategic Greening</h3>
+                    <p class="text-gray-700 parkinsans-gen">Get data-driven recommendations for tree planting and green space development to maximize cooling impact.</p>
+                </div>
+            </div>
+            <div class="bg-white rounded-lg overflow-hidden shadow-md hover:shadow-xl transition-shadow duration-300 transform hover:-translate-y-1 duration-300">
+                <img src="{{ url_for('static', filename='img/Urban.png') }}" alt="Urban Planning" class="w-full h-48 object-cover">
+                <div class="p-6">
+                    <h3 class="text-xl font-bold mb-3 text-dark-green">Urban Planning</h3>
+                    <p class="text-gray-700 parkinsans-gen">Guide urban development with insights that improve city livability, sustainability, and climate resilience.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="py-20 bg-white">
+    <div class="container mx-auto px-4">
+        <h2 class="text-3xl md:text-4xl font-bold text-center mb-10 relative">
+            THE INFORMATION THAT YOU NEED
+            <span class="absolute bottom-0 left-1/2 transform -translate-x-1/2 w-16 h-1 bg-secondary-green mt-4"></span>
+        </h2>
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mt-12">
+            <div class="text-center">
+                <img src="{{ url_for('static', filename='img/icon1.svg') }}" alt="Heat Zone Location" class="w-16 h-16 mx-auto mb-4">
+                <h3 class="text-xl font-bold mb-2 text-dark-green">Heat Zone Location</h3>
+                <p class="text-gray-700 parkinsans-gen">Precise mapping of urban heat islands and hot spots throughout the city.</p>
+            </div>
+            <div class="text-center">
+                <img src="{{ url_for('static', filename='img/icon2.svg') }}" alt="Temperature Analysis" class="w-16 h-16 mx-auto mb-4">
+                <h3 class="text-xl font-bold mb-2 text-dark-green">Temperature Analysis</h3>
+                <p class="text-gray-700 parkinsans-gen">Detailed temperature data showing variations across different urban areas.</p>
+            </div>
+            <div class="text-center">
+                <img src="{{ url_for('static', filename='img/icon3.svg') }}" alt="Cooling Potential" class="w-16 h-16 mx-auto mb-4">
+                <h3 class="text-xl font-bold mb-2 text-dark-green">Cooling Potential</h3>
+                <p class="text-gray-700 parkinsans-gen">Assessment of each area's potential for temperature reduction through greening.</p>
+            </div>
+            <div class="text-center">
+                <img src="{{ url_for('static', filename='img/icon4.svg') }}" alt="Tree Recommendations" class="w-16 h-16 mx-auto mb-4">
+                <h3 class="text-xl font-bold mb-2 text-dark-green">Tree Recommendations</h3>
+                <p class="text-gray-700 parkinsans-gen">Specific suggestions for tree species and planting locations for maximum impact.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="py-10 bg-light-grey">
+    <div class="container mx-auto px-4">
+        <div class="max-w-3xl mx-auto bg-dark-green bg-opacity-5 rounded-lg shadow-lg p-6 md:p-8 border border-dark-green border-opacity-20">
+            <div class="mb-6">
+                <h2 class="text-2xl md:text-3xl font-bold text-center text-dark-green parkinsans-gen mb-4">Bengaluru Livability Index</h2>
+                <p class="text-center text-gray-600 parkinsans-gen mb-6">Areas ranked by temperature, air quality, and vegetation</p>
+                <div class="relative max-w-md mx-auto">
+                    <input type="text" id="sector-search" placeholder="Search areas..." class="w-full p-3 border border-gray-300 rounded-lg pl-10 focus:outline-none focus:ring-2 focus:ring-secondary-green parkinsans-gen">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+                    </svg>
+                </div>
+            </div>
+            
+            <div id="leaderboard-container">
+                <div class="flex flex-col space-y-3" id="leaderboard-list">
+                    <!-- Leaderboard items will be inserted here by JavaScript -->
+                </div>
+                <div id="no-results" class="hidden text-center py-6">
+                    <p class="text-lg text-gray-600 parkinsans-gen">No sectors found matching your search</p>
+                </div>
+                <div id="load-more-container" class="text-center mt-6">
+                    <button id="load-more-btn" class="bg-dark-green text-white px-6 py-2 rounded-lg hover:bg-secondary-green transition-colors duration-300 parkinsans-gen">
+                        Load More
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="bg-light-grey py-20">
+    <div class="container mx-auto px-4">
+        <h2 class="text-3xl md:text-4xl font-bold text-center mb-6">Ready to make your city cooler and greener?</h2>
+        <p class="text-xl text-center mb-10 max-w-3xl mx-auto parkinsans-gen">Get started with our GreenGrids today and transform your city planning with data-driven insights.</p>
+        <div class="text-center">
+            <a href="{{ url_for('contact') }}" class="inline-block bg-secondary-green hover:bg-primary-green text-white font-bold uppercase py-4 px-8 rounded-lg shadow-lg transform hover:scale-105 transition-all duration-300 ease-in-out tracking-wide relative overflow-hidden group">
+                <span class="relative z-10">CONTACT US</span>
+                <span class="absolute inset-0 bg-gradient-to-r from-primary-green to-secondary-green opacity-0 group-hover:opacity-100 transition-opacity duration-300"></span>
+            </a>
+        </div>
+    </div>
+</section>
+
+
+{% endblock %}
+
+{% block extra_js %}
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const heroSection = document.getElementById('hero-section');
+        if (heroSection) {
+            heroSection.style.backgroundImage = "url('{{ url_for('static', filename='img/bgimage.jpeg') }}')";
+        }
+
+        // Initialize variables for leaderboard
+        let currentPage = 1;
+        const itemsPerPage = 5;
+        let sortedSectors = [];
+        let filteredSectors = [];
+        
+        // Function to calculate livability index (copied from map2.html)
+        function calculateGPI(lst, aqi, ndvi) {
+            // Normalize LST (Land Surface Temperature) score (0-100, where 0 is best)
+            // Assuming optimal temperature around 20°C, with range 15-45°C
+            const lstScore = Math.min(100, Math.max(0, ((lst - 20) / 25) * 100));
+            
+            // Normalize AQI (Air Quality Index) score (0-100, where 0 is best)
+            // AQI ranges from 0-500, where lower is better
+            const aqiScore = Math.min(100, (aqi / 500) * 100);
+            
+            // Normalize NDVI (Normalized Difference Vegetation Index) score (0-100, where 100 is best)
+            // NDVI ranges from 0 to 10 in your data, where higher is better
+            const ndviScore = 100 - Math.min(100, Math.max(0, (ndvi / 10) * 100));
+            
+            // Calculate weighted average (weights sum to 1)
+            const weightedScore = (
+                (lstScore * 0.4) +    // Temperature has highest weight
+                (aqiScore * 0.35) +   // Air quality second highest
+                (ndviScore * 0.25)    // Vegetation coverage
+            );
+            
+            // Invert final score so 100 is best (most livable), 0 is worst
+            return Math.round(100 - weightedScore);
+        }
+        
+        // Display the leaderboard
+        function displayLeaderboard(sectors, page = 1) {
+            const leaderboardList = document.getElementById('leaderboard-list');
+            const noResults = document.getElementById('no-results');
+            const loadMoreBtn = document.getElementById('load-more-btn');
+            
+            // Clear previous results
+            leaderboardList.innerHTML = '';
+            
+            if (sectors.length === 0) {
+                noResults.classList.remove('hidden');
+                loadMoreBtn.classList.add('hidden');
+                return;
+            }
+            
+            noResults.classList.add('hidden');
+            
+            const startIndex = 0;
+            const endIndex = page * itemsPerPage;
+            const currentSectors = sectors.slice(startIndex, endIndex);
+            
+            // Create elements for each sector
+            currentSectors.forEach(sector => {
+                const row = document.createElement('div');
+                row.className = 'flex items-center bg-white rounded-lg shadow-sm overflow-hidden transition-all duration-300 hover:shadow-md hover:bg-gray-50';
+                
+                // Rank number on the left
+                const rankDiv = document.createElement('div');
+                rankDiv.className = 'flex items-center justify-center w-16 h-full';
+                
+                // Special styling for top 3 ranks
+                if (sector.rank === 1) {
+                    rankDiv.classList.add('bg-yellow-400', 'text-white');
+                } else if (sector.rank === 2) {
+                    rankDiv.classList.add('bg-gray-400', 'text-white');
+                } else if (sector.rank === 3) {
+                    rankDiv.classList.add('bg-amber-700', 'text-white');
+                } else {
+                    rankDiv.classList.add('bg-dark-green', 'bg-opacity-10', 'text-dark-green');
+                }
+                
+                // Rank number content
+                rankDiv.innerHTML = `
+                    <span class="text-2xl font-bold text-center">${sector.rank}</span>
+                `;
+                
+                // Sector details
+                const detailsDiv = document.createElement('div');
+                detailsDiv.className = 'flex-1 p-3';
+                detailsDiv.innerHTML = `
+                    <div class="flex flex-wrap items-center justify-between">
+                        <h2 class="text-lg font-bold text-gray-800">${sector.name}</h2>
+                        <div class="flex items-center">
+                            <span class="text-sm text-gray-600 mr-2">Score:</span>
+                            <span class="font-bold text-dark-green">${sector.score}/100</span>
+                        </div>
+                    </div>
+                    <div class="flex items-center mt-2 mb-3">
+                        <div class="w-32 bg-gray-200 rounded-full h-1.5">
+                            <div class="bg-dark-green h-1.5 rounded-full" style="width: ${sector.score}%"></div>
+                        </div>
+                        <div class="flex ml-6 text-xs text-gray-600 space-x-4">
+                            <div>AQI: <span class="font-medium">${sector.aqi}</span></div>
+                            <div>Temp: <span class="font-medium">${sector.lst}°C</span></div>
+                            <div>NDVI: <span class="font-medium">${sector.ndvi}</span></div>
+                        </div>
+                    </div>
+                `;
+                
+                row.appendChild(rankDiv);
+                row.appendChild(detailsDiv);
+                leaderboardList.appendChild(row);
+            });
+
+            // Show/hide load more button
+            if (endIndex >= sectors.length) {
+                loadMoreBtn.classList.add('hidden');
+            } else {
+                loadMoreBtn.classList.remove('hidden');
+            }
+        }
+        
+        // Fetch the data file
+        fetch('/static/data/bengaluru_area_temperatures.json')
+            .then(response => response.json())
+            .then(data => {
+                // Use the most recent year available
+                const years = Object.keys(data).sort();
+                const latestYear = years[years.length - 1];
+                const yearData = data[latestYear];
+                console.log(`Loaded data for year: ${latestYear}`);
+                
+                // Update section title
+                const leaderboardTitle = document.querySelector('#leaderboard-container').closest('section').querySelector('h2');
+                if (leaderboardTitle) {
+                    leaderboardTitle.textContent = `Sustainability Leaderboard (${latestYear})`;
+                }
+                
+                let areaData = [];
+                
+                // Process each area
+                for (const [areaName, metrics] of Object.entries(yearData)) {
+                    if (areaName === "NaN") continue; // Skip NaN entries
+                    
+                    // Extract metrics
+                    const temperature = metrics.temperature || 0;
+                    const aqi = metrics.aqi || 0;
+                    const ndvi = metrics.ndvi || 0;
+                    
+                    // Calculate livability score
+                    const score = calculateGPI(temperature, aqi, ndvi);
+                    
+                    // Add to our area data
+                    areaData.push({
+                        name: areaName,
+                        score: score,
+                        lst: parseFloat(temperature).toFixed(1),
+                        aqi: Math.round(aqi),
+                        ndvi: parseFloat(ndvi).toFixed(1)
+                    });
+                }
+                
+                console.log(`Processed ${areaData.length} areas`);
+                
+                // Sort areas by livability score (highest first)
+                sortedSectors = areaData.sort((a, b) => b.score - a.score);
+                
+                // Add rank property to each area
+                sortedSectors.forEach((sector, index) => {
+                    sector.rank = index + 1;
+                });
+                
+                // Initialize filtered sectors
+                filteredSectors = [...sortedSectors];
+                
+                // Display the leaderboard
+                displayLeaderboard(sortedSectors, 1);
+            })
+            .catch(error => {
+                console.error('Error loading area data:', error);
+                
+                // Fallback to dummy data if JSON fails to load
+                const sectorData = [
+                    { name: "Indiranagar", score: 92, aqi: 55, lst: 32.5, ndvi: 7.2 },
+                    { name: "Koramangala", score: 88, aqi: 62, lst: 33.1, ndvi: 6.8 },
+                    { name: "Whitefield", score: 75, aqi: 75, lst: 34.8, ndvi: 5.5 },
+                    { name: "Jayanagar", score: 85, aqi: 65, lst: 33.7, ndvi: 6.5 },
+                    { name: "HSR Layout", score: 82, aqi: 68, lst: 33.9, ndvi: 6.2 }
+                ];
+                
+                // Sort sectors by score (highest first)
+                sortedSectors = [...sectorData].sort((a, b) => b.score - a.score);
+                
+                // Add rank property to each sector
+                sortedSectors.forEach((sector, index) => {
+                    sector.rank = index + 1;
+                });
+                
+                // Initialize filtered sectors
+                filteredSectors = [...sortedSectors];
+                
+                // Display the leaderboard with dummy data
+                displayLeaderboard(sortedSectors, 1);
+            });
+        
+        // Load more functionality
+        document.getElementById('load-more-btn').addEventListener('click', function() {
+            currentPage++;
+            displayLeaderboard(filteredSectors, currentPage);
+        });
+        
+        // Search functionality
+        const searchInput = document.getElementById('sector-search');
+        searchInput.addEventListener('input', function() {
+            const searchTerm = this.value.toLowerCase().trim();
+            currentPage = 1;
+            
+            if (searchTerm === '') {
+                filteredSectors = [...sortedSectors];
+            } else {
+                filteredSectors = sortedSectors.filter(sector => 
+                    sector.name.toLowerCase().includes(searchTerm)
+                );
+            }
+            
+            displayLeaderboard(filteredSectors, currentPage);
+        });
+    });
+</script>
+{% endblock %}

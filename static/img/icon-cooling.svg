@@ -1,0 +1,11 @@
+<svg width="50" height="50" viewBox="0 0 50 50" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <path d="M25 44C35.4934 44 44 35.4934 44 25C44 14.5066 35.4934 6 25 6C14.5066 6 6 14.5066 6 25C6 35.4934 14.5066 44 25 44Z" fill="#3d4db7" opacity="0.1"/>
+  <path d="M35 25C35 30.5228 30.5228 35 25 35C19.4772 35 15 30.5228 15 25C15 19.4772 19.4772 15 25 15C30.5228 15 35 19.4772 35 25Z" fill="#3d4db7" opacity="0.2"/>
+  <path d="M31 25C31 28.3137 28.3137 31 25 31C21.6863 31 19 28.3137 19 25C19 21.6863 21.6863 19 25 19C28.3137 19 31 21.6863 31 25Z" fill="#3d4db7"/>
+  <path d="M20 16.5L17 13.5M17 19.5H13M20 33.5L17 36.5M33 36.5L30 33.5M37 19.5H33M30 16.5L33 13.5" stroke="#334232" stroke-width="2" stroke-linecap="round"/>
+  <path d="M25 15V10" stroke="#334232" stroke-width="2" stroke-linecap="round"/>
+  <path d="M25 40V35" stroke="#334232" stroke-width="2" stroke-linecap="round"/>
+  <path d="M15 25H10" stroke="#334232" stroke-width="2" stroke-linecap="round"/>
+  <path d="M40 25H35" stroke="#334232" stroke-width="2" stroke-linecap="round"/>
+  <path d="M28 25C28 26.6569 26.6569 28 25 28C23.3431 28 22 26.6569 22 25C22 23.3431 23.3431 22 25 22C26.6569 22 28 23.3431 28 25Z" fill="white"/>
+</svg>
