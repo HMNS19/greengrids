@@ -60,6 +60,79 @@
         
 </body>
 <script>
+    // LIVABILITY INDEX CALCULATOR
+// --- CORRECTED DATA LOADING SCRIPT ---
+
+// 1. Livability Calculation Function
+function calculateGPI(lst, aqi, ndvi) {
+            // Normalize LST (Land Surface Temperature) score (0-100, where 0 is best)
+            // Assuming optimal temperature around 20°C, with range 15-45°C
+            const lstScore = Math.min(100, Math.max(0, ((lst - 20) / 25) * 100));
+            
+            // Normalize AQI (Air Quality Index) score (0-100, where 0 is best)
+            // AQI ranges from 0-500, where lower is better
+            const aqiScore = Math.min(100, (aqi / 500) * 100);
+            
+            // Normalize NDVI (Normalized Difference Vegetation Index) score (0-100, where 100 is best)
+            // NDVI ranges from 0 to 10 in your data, where higher is better
+            const ndviScore = 100 - Math.min(100, Math.max(0, (ndvi / 10) * 100));
+            
+            // Calculate weighted average (weights sum to 1)
+            const weightedScore = (
+                (lstScore * 0.4) +    // Temperature has highest weight
+                (aqiScore * 0.35) +   // Air quality second highest
+                (ndviScore * 0.25)    // Vegetation coverage
+            );
+            
+            // Invert final score so 100 is best (most livable), 0 is worst
+            return Math.round(100 - weightedScore);
+        }
+
+// 2. Global variable to store the merged data
+var REAL_DATA_MAP = {};
+
+// 3. Load the JSON file
+async function loadRealData() {
+    try {
+        console.log("Fetching JSON data...");
+        // Ensure this path matches where your file actually is
+        const response = await fetch('/static/data/bengaluru_area_temperatures.json');
+        const fullData = await response.json();
+
+        // 4. AUTOMATICALLY PICK THE LATEST YEAR
+        // This sorts the years (e.g., 2015, 2024, 2025) and picks the biggest one.
+        const years = Object.keys(fullData).sort();
+        const latestYear = years[years.length - 1]; 
+        console.log("Using data for Year:", latestYear);
+
+        const yearData = fullData[latestYear];
+
+        // 5. Process the data
+        for (const [districtName, values] of Object.entries(yearData)) {
+            // Calculate index immediately
+            const index = calculateGPI(
+                values.temperature, 
+                values.aqi,         
+                values.ndvi        
+            );
+
+            // Store it in our global map
+            REAL_DATA_MAP[districtName] = {
+                index: index,
+                lst: values.temperature,
+                aqi: values.aqi,
+                ndvi: values.ndvi
+            };
+        }
+        console.log("Data loaded successfully for districts:", Object.keys(REAL_DATA_MAP));
+
+    } catch (error) {
+        console.error("Error loading JSON data:", error);
+    }
+}
+
+// Start loading immediately
+loadRealData();
     
     
             var map_ba55bc0dcbea5e2e878b61e0d6f4dd17 = L.map(
@@ -376,31 +449,60 @@
 
         
     
-    geo_json_b288a6e82f8738df19a0eee41bdd3976.bindTooltip(
-    function(layer){
-    let div = L.DomUtil.create('div');
-    
-    let handleObject = feature=>typeof(feature)=='object' ? JSON.stringify(feature) : feature;
-    let fields = ["name", "mean_lst"];
-    let aliases = ["Area:", "Mean LST (\u00b0C):"];
-    let table = '<table>' +
-        String(
-        fields.map(
-        (v,i)=>
-        `<tr>
-            <th>${aliases[i].toLocaleString()}</th>
-            
-            <td>${handleObject(layer.feature.properties[v]).toLocaleString()}</td>
-        </tr>`).join(''))
-    +'</table>';
-    div.innerHTML=table;
-    
-    return div
-    }
-    ,{
-  "sticky": true,
-  "className": "foliumtooltip",
-});
+// --- FINAL TOOLTIP CODE ---
+geo_json_b288a6e82f8738df19a0eee41bdd3976.bindTooltip(
+    function(layer) {
+        // 1. Get the Area Name from the map
+        const props = layer.feature.properties;
+        const name = props.name;
+
+        
+        const data = REAL_DATA_MAP[name];
+
+        // 3. Handle "Loading" or "Missing" state
+        if (!data) {
+            // Show a temporary message if data isn't ready yet
+            return `<div style="font-family:Arial; padding:5px;">
+                        <strong>${name}</strong><br>
+                        <span style="color:gray; font-size:11px;">Loading Data...</span>
+                    </div>`;
+        }
+
+        // 4. Determine Color
+        let color = "#d32f2f"; // Red (Bad)
+        if (data.index > 75) color = "#388e3c";      // Green (Good)
+        else if (data.index > 50) color = "#f57c00"; // Orange (Moderate)
+
+        // 5. Build the HTML
+        return `
+            <div style="font-family: 'Segoe UI', Arial, sans-serif; min-width: 180px; padding: 10px; background: white; border-radius: 4px; box-shadow: 0 2px 5px rgba(0,0,0,0.2);">
+                <div style="font-weight: bold; font-size: 14px; border-bottom: 1px solid #eee; padding-bottom: 5px; margin-bottom: 8px;">
+                    ${name}
+                </div>
+                
+                <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 8px;">
+                    <span style="font-size: 12px; color: #555;">Livability Score</span>
+                    <span style="font-size: 18px; font-weight: 800; color: ${color};">
+                        ${data.index} <span style="font-size: 10px; color: #999;">/100</span>
+                    </span>
+                </div>
+
+                <div style="background: #f8f9fa; padding: 6px; border-radius: 4px; font-size: 11px; color: #444; line-height: 1.6;">
+                    <div style="display: flex; justify-content: space-between;">
+                        <span>🌡️ Temp:</span> <strong>${data.lst.toFixed(1)}°C</strong>
+                    </div>
+                    <div style="display: flex; justify-content: space-between;">
+                        <span>💨 AQI:</span> <strong>${data.aqi.toFixed(0)}</strong>
+                    </div>
+                    <div style="display: flex; justify-content: space-between;">
+                        <span>🌳 NDVI:</span> <strong>${data.ndvi.toFixed(2)}</strong>
+                    </div>
+                </div>
+            </div>
+        `;
+    },
+    {sticky: true, className: "custom-tooltip", opacity: 0.95}
+);
                      
     
             geo_json_b288a6e82f8738df19a0eee41bdd3976.addTo(map_ba55bc0dcbea5e2e878b61e0d6f4dd17);
